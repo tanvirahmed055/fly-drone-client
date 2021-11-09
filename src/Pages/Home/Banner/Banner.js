@@ -6,6 +6,7 @@ import banner1 from '../../../img/banner1.jpeg';
 import banner2 from '../../../img/banner2.jpeg';
 import banner3 from '../../../img/banner3.jpeg';
 
+
 const Banner = () => {
     return (
         <Carousel fade>
