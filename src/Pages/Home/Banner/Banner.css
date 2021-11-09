@@ -1,0 +1,7 @@
+.banner-image{
+    background-repeat: none;
+    background-position: center;
+    background-blend-mode: overlay;
+    background-size: cover;
+    height: 88vh; 
+}
