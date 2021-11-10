@@ -16,14 +16,14 @@ const Login = () => {
 
 
     return (
-        <Container fluid className="login-main-container">
+        <Container fluid >
             <Row>
                 <Col sm={12} >
                     <Container className="order-form-container py-5  mt-5 ">
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <h1>Login</h1>
+                            <h1 className="fw-bold">Login</h1>
                             <label htmlFor="email">Email</label>
-                            <input placeholder="email"  {...register("email")} />
+                            <input placeholder="email" type="email" {...register("email")} />
 
 
                             <label htmlFor="password">Password</label>
