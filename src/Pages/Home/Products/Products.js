@@ -51,7 +51,7 @@ const Products = () => {
     ]
     return (
         <div className="container mt-5" id="products">
-            <h1 className="text-center fw-bold mb-5">Our Products</h1>
+            <h1 className="text-center fw-bold mb-5 fst-italic">Our Products</h1>
 
             <Row xs={1} md={3} className="g-2">
                 {
