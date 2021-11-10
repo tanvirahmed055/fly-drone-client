@@ -1,0 +1,10 @@
+.dashboard{
+    background-color:  rgb(115, 134, 213);
+    height: 100vh;
+}
+
+li{
+        list-style: none;
+        margin-top: 10px;
+
+}
