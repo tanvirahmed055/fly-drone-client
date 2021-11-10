@@ -12,6 +12,7 @@ const Register = () => {
         console.log(data);
 
 
+
     }
 
 
@@ -20,7 +21,7 @@ const Register = () => {
         <Container fluid >
             <Row>
                 <Col sm={12} >
-                    <Container className="order-form-container py-2  my-3 ">
+                    <Container className="order-form-container py-3  my-5 ">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <h1 className="fw-bold">Sign Up</h1>
 
@@ -34,11 +35,6 @@ const Register = () => {
 
                             <label htmlFor="password">Password</label>
                             <input placeholder="password" type="password" {...register("password")} />
-
-
-
-                            <label htmlFor="password">Retype Password</label>
-                            <input placeholder="retype password" type="password" {...register("password2")} />
 
 
                             <div style={{ color: "red" }}>
