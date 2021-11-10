@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Container } from 'react-bootstrap';
 import {
     BrowserRouter as Router,
     Switch,
@@ -23,9 +23,10 @@ const Dashboard = () => {
     let { path, url } = useRouteMatch();
 
     return (
-        <Row className="gy-4">
-            <Col sm={3} >
-                <div className="dashboard">
+        <Container fluid>
+            <Row>
+                <Col xs={12} md={3} className="dashboard">
+
 
                     <Link to={`${url}`}>
                         <h2 className="fs-3 fw-bolder fst-italic text-white pt-5"><i className="fas fa-chart-line"></i>&nbsp;Dashboard</h2>
@@ -59,38 +60,39 @@ const Dashboard = () => {
                             </Link>
                         </li>
                     </ul>
-                </div>
-            </Col>
-            <Col sm={9}>
-                <Switch>
-                    <Route exact path={path}>
-                        <DashboardHome></DashboardHome>
-                    </Route>
 
-                    <Route path={`${path}/addAProduct`}>
-                        <AddAProduct></AddAProduct>
-                    </Route>
-                    <Route path={`${path}/makeAdmin`}>
-                        <MakeAdmin></MakeAdmin>
-                    </Route>
-                    <Route path={`${path}/manageAllOrders`}>
-                        <ManageAllOrders></ManageAllOrders>
-                    </Route>
-                    <Route path={`${path}/manageProducts`}>
-                        <ManageProducts></ManageProducts>
-                    </Route>
-                    <Route path={`${path}/myOrders`}>
-                        <MyOrders></MyOrders>
-                    </Route>
-                    <Route path={`${path}/pay`}>
-                        <Pay></Pay>
-                    </Route>
-                    <Route path={`${path}/review`}>
-                        <Review></Review>
-                    </Route>
-                </Switch>
-            </Col>
-        </Row>
+                </Col>
+                <Col xs={12} md={9} >
+                    <Switch>
+                        <Route exact path={path}>
+                            <DashboardHome></DashboardHome>
+                        </Route>
+
+                        <Route path={`${path}/addAProduct`}>
+                            <AddAProduct></AddAProduct>
+                        </Route>
+                        <Route path={`${path}/makeAdmin`}>
+                            <MakeAdmin></MakeAdmin>
+                        </Route>
+                        <Route path={`${path}/manageAllOrders`}>
+                            <ManageAllOrders></ManageAllOrders>
+                        </Route>
+                        <Route path={`${path}/manageProducts`}>
+                            <ManageProducts></ManageProducts>
+                        </Route>
+                        <Route path={`${path}/myOrders`}>
+                            <MyOrders></MyOrders>
+                        </Route>
+                        <Route path={`${path}/pay`}>
+                            <Pay></Pay>
+                        </Route>
+                        <Route path={`${path}/review`}>
+                            <Review></Review>
+                        </Route>
+                    </Switch>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 
