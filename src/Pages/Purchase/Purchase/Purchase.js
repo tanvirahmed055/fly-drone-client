@@ -25,7 +25,9 @@ const Purchase = () => {
         const newOrder = {
             name: data.username,
             email: data.email,
-            phone: data.phonenumber,
+            address: data.address,
+            location: data.location,
+            location: data.location,
             location: data.location,
         }
 
@@ -69,13 +71,19 @@ const Purchase = () => {
                                     {...register("email")}
                                 />
 
+                                <label htmlFor="address">Address</label>
+                                <input placeholder="address" {...register("address")} />
+
 
                                 <label htmlFor="phonenumber">Phone Number</label>
                                 <input placeholder="+880" {...register("phonenumber")} />
 
 
-                                <label htmlFor="location">Location</label>
-                                <input placeholder="Delivery Place" {...register("location")} />
+                                <label htmlFor="city">City</label>
+                                <input placeholder="city" {...register("city")} />
+
+                                <label htmlFor="color">Product Color</label>
+                                <input placeholder="preferred color" {...register("color")} />
 
                                 <div style={{ color: "red" }}>
                                     {Object.keys(errors).length > 0 &&

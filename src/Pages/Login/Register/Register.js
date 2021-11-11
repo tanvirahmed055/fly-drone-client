@@ -11,7 +11,7 @@ const Register = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const { handleRegistration, updateProfile, auth, setLoading } = useAuth();
+    const { handleRegistration, updateProfile, auth, setLoading, userInfo } = useAuth();
 
     let history = useHistory();
 
@@ -45,6 +45,8 @@ const Register = () => {
                     // ...
                 });
 
+                savedUser(data.name, data.email)
+
                 history.replace('/login')
 
             })
@@ -56,6 +58,27 @@ const Register = () => {
         reset();
     }
 
+
+    const savedUser = (name, email) => {
+        const user = { name, email };
+        console.log(user);
+        const url = 'http://localhost:5000/users';
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
 
 
     return (

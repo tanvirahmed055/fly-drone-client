@@ -59,6 +59,7 @@ const useFirebase = () => {
         handleRegistration,
         handleLogin,
         userInfo,
+        setUserInfo,
         handleLogOut,
         updateProfile,
         auth,
