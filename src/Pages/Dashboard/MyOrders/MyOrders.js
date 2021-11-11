@@ -14,7 +14,6 @@ const MyOrders = () => {
     const userEmail = userInfo?.email;
 
     useEffect(() => {
-        setLoading(true);
         const url = `http://localhost:5000/orders?email=${userEmail}`
         fetch(url)
             .then(res => res.json())
@@ -23,8 +22,26 @@ const MyOrders = () => {
                 //console.log(orders)
                 setLoading(false);
             })
-    }, [])
+    }, [orders])
 
+    const handleDelete = id => {
+        //console.log(id);
+
+        const confirmation = window.confirm("Are you sure you want to delete your order?");
+
+        if (confirmation) {
+            fetch(`http://localhost:5000/deleteOrder/${id}`, {
+                method: 'DELETE',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    //console.log('Success:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    }
 
 
 
@@ -49,7 +66,6 @@ const MyOrders = () => {
                                             <th>Email</th>
                                             <th>Status</th>
                                             <th>Delete</th>
-                                            <th>Update</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -65,10 +81,9 @@ const MyOrders = () => {
                                                     <td>{order?.email}</td>
 
                                                     <td>{order?.status}</td>
-                                                    <td>  <Button variant="danger" >Delete</Button>
+                                                    <td>  <Button variant="danger" onClick={() => handleDelete(order?._id)} >Delete</Button>
                                                     </td>
-                                                    <td>  <Button variant="success" >Update</Button>
-                                                    </td>
+
 
                                                 </tr>
                                             })
