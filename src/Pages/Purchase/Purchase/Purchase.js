@@ -31,6 +31,7 @@ const Purchase = () => {
             productColor: data.color,
         }
 
+        newOrder.productName = product?.productName;
         newOrder.productPrice = product?.productPrice;
         newOrder.status = 'pending';
 
