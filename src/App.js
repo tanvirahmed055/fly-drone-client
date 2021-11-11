@@ -10,6 +10,7 @@ import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
 import AuthProvider from './context/AuthProvider';
 import Explore from './Pages/Explore/Explore/Explore';
+import Purchase from './Pages/Purchase/Purchase/Purchase';
 
 function App() {
   return (
@@ -35,8 +36,8 @@ function App() {
             <Route path="/explore">
               <Explore></Explore>
             </Route>
-            <Route path="/purchase">
-              <Register></Register>
+            <Route path="/purchase/:id">
+              <Purchase></Purchase>
             </Route>
           </Switch>
         </Router>

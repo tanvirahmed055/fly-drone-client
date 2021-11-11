@@ -1,8 +1,14 @@
 import React from 'react';
 import { Card, Col, Button, Container, Row } from 'react-bootstrap';
+import {
+    useHistory
+} from "react-router-dom";
 
 const Product = (props) => {
-    const { productName, productImg, shortDescription, productPrice } = props.product;
+    const { _id, productName, productImg, shortDescription, productPrice } = props.product;
+
+    let history = useHistory();
+
     return (
         <Col>
             <Card className="text-center h-100">
@@ -21,7 +27,7 @@ const Product = (props) => {
                                 </Card.Title>
                             </Col>
                             <Col sm={5}>
-                                <Button variant="warning" size="lg" className="fw-bolder">
+                                <Button variant="warning" size="lg" className="fw-bolder" onClick={() => history.push(`/purchase/${_id}`)}>
                                     Purchase
                                 </Button>
                             </Col>
