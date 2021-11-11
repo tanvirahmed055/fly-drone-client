@@ -11,6 +11,7 @@ import Register from './Pages/Login/Register/Register';
 import AuthProvider from './context/AuthProvider';
 import Explore from './Pages/Explore/Explore/Explore';
 import Purchase from './Pages/Purchase/Purchase/Purchase';
+import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
@@ -36,9 +37,9 @@ function App() {
             <Route path="/explore">
               <Explore></Explore>
             </Route>
-            <Route path="/purchase/:id">
+            <PrivateRoute path="/purchase/:id">
               <Purchase></Purchase>
-            </Route>
+            </PrivateRoute>
           </Switch>
         </Router>
       </AuthProvider>
