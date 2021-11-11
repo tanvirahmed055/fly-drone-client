@@ -1,6 +1,11 @@
 import React from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
+import useAuth from '../../../hooks/useAuth';
+import {
+    useHistory,
+    useLocation
+} from "react-router-dom";
 import './Login.css';
 
 const Login = () => {
@@ -8,10 +13,29 @@ const Login = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
 
+    const { handleLogin } = useAuth();
+
+    let history = useHistory();
+    let location = useLocation();
+
+    let { from } = location.state || { from: { pathname: "/" } };
+
     const onSubmit = data => {
         console.log(data);
 
+        handleLogin(data.email, data.password)
+            .then(result => {
+                // Signed in 
+                const user = result.user;
+                // ...
+                history.push(from);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
 
+        reset();
     }
 
 

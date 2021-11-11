@@ -2,9 +2,12 @@ import React from 'react';
 import { Container, Nav, Navbar, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
+import useAuth from '../../../hooks/useAuth'
 import './Header.css';
 
 const Header = () => {
+
+    const { userInfo, handleLogOut } = useAuth();
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="p-3">
@@ -17,13 +20,25 @@ const Header = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ms-auto">
 
+                        {userInfo?.email && <Nav.Link className="me-2 fw-bold text-white" >Signed in as: {userInfo?.email}</Nav.Link>}
 
-
-                        <HashLink className="me-2 nav-link text-white" style={{ fontWeight: 'bold' }} to="/home#products">Products</HashLink>
+                        <HashLink className="me-2 nav-link text-white" style={{ fontWeight: 'bold' }} to="">Explore</HashLink>
 
 
                         <Link to="/dashboard">
                             <Button variant="primary" className="me-3 fw-bold">Dashboard</Button>
+                        </Link>
+
+                        {userInfo?.email ? <Link to="/">
+                            <Button variant="warning" className="me-3 mb-1" onClick={() => handleLogOut()}>Logout</Button>
+                        </Link> :
+                            <Link to="/login">
+                                <Button variant="warning" className="me-3">Login</Button>
+                            </Link>
+                        }
+
+                        <Link to="/register">
+                            <Button variant="danger" className="me-3">Signup</Button>
                         </Link>
 
                     </Nav>
