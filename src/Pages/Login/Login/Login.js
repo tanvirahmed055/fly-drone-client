@@ -6,6 +6,7 @@ import {
     useHistory,
     useLocation
 } from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner';
 import './Login.css';
 
 const Login = () => {
@@ -13,7 +14,7 @@ const Login = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
 
-    const { handleLogin } = useAuth();
+    const { handleLogin, setLoading } = useAuth();
 
     let history = useHistory();
     let location = useLocation();

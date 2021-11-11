@@ -3,15 +3,15 @@ import { Col, Container, Image, Row, Button } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import useAuth from '../../../hooks/useAuth';
 import {
-    useHistory,
-    useLocation
+    useHistory
 } from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner';
 
 const Register = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const { handleRegistration, updateProfile, auth } = useAuth();
+    const { handleRegistration, updateProfile, auth, setLoading } = useAuth();
 
     let history = useHistory();
 
