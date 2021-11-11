@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import initializeAuthentication from '../Pages/Login/firebase/firebase.init';
-import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
 
 
 initializeAuthentication();
@@ -25,7 +25,7 @@ const useFirebase = () => {
 
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        const unsubscribed = onAuthStateChanged(auth, (user) => {
             if (user) {
                 // User is signed in, see docs for a list of available properties
                 // https://firebase.google.com/docs/reference/js/firebase.User
@@ -37,6 +37,7 @@ const useFirebase = () => {
                 setUserInfo({});
             }
         });
+        return () => unsubscribed;
     }, [])
 
     const handleLogOut = () => {
@@ -51,7 +52,9 @@ const useFirebase = () => {
         handleRegistration,
         handleLogin,
         userInfo,
-        handleLogOut
+        handleLogOut,
+        updateProfile,
+        auth
     };
 
 };

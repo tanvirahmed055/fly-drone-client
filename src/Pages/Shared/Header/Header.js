@@ -20,7 +20,7 @@ const Header = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ms-auto">
 
-                        {userInfo?.email && <Nav.Link className="me-2 fw-bold text-white" >Signed in as: {userInfo?.email}</Nav.Link>}
+                        {userInfo?.displayName && <Nav.Link className="me-2 fw-bold text-white" >Signed in as: {userInfo?.displayName}</Nav.Link>}
 
                         <HashLink className="me-2 nav-link text-white" style={{ fontWeight: 'bold' }} to="">Explore</HashLink>
 

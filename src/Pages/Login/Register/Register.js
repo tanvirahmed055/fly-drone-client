@@ -2,12 +2,20 @@ import React from 'react';
 import { Col, Container, Image, Row, Button } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import useAuth from '../../../hooks/useAuth';
+import {
+    useHistory,
+    useLocation
+} from "react-router-dom";
 
 const Register = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const { handleRegistration } = useAuth();
+    const { handleRegistration, updateProfile, auth } = useAuth();
+
+    let history = useHistory();
+
+
 
 
     const onSubmit = (data, e) => {
@@ -27,6 +35,17 @@ const Register = () => {
                 // Signed in 
                 const user = result.user;
                 // ...
+                updateProfile(auth.currentUser, {
+                    displayName: data.name,
+                }).then(() => {
+                    // Profile updated!
+                    // ...
+                }).catch((error) => {
+                    // An error occurred
+                    // ...
+                });
+
+                history.replace('/login')
 
             })
             .catch((error) => {
