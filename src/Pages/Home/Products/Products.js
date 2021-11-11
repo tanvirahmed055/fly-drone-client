@@ -1,61 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row } from 'react-bootstrap';
 import Product from '../Product/Product';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 const Products = () => {
 
-    const products = [
-        {
-            id: 1,
-            name: "Carbon Fiber 12 MP DJI Spark Drone Camera",
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTljymdrW1wftBJmxaP5RZ0FPS5j5X0rhNGqw&usqp=CAU",
-            description: "our team of drone experts have advised, built, and supplied drones all over the US. We’re your one-stop shop for everything related to remote control aircraft.",
-            price: 1500
-        },
-        {
-            id: 2,
-            name: "Carbon Fiber 12 MP DJI Spark Drone Camera",
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTljymdrW1wftBJmxaP5RZ0FPS5j5X0rhNGqw&usqp=CAU",
-            description: "our team of drone experts have advised, built, and supplied drones all over the US. We’re your one-stop shop for everything related to remote control aircraft.",
-            price: 1500
-        },
-        {
-            id: 3,
-            name: "Carbon Fiber 12 MP DJI Spark Drone Camera",
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTljymdrW1wftBJmxaP5RZ0FPS5j5X0rhNGqw&usqp=CAU",
-            description: "our team of drone experts have advised, built, and supplied drones all over the US. We’re your one-stop shop for everything related to remote control aircraft.",
-            price: 1500
-        },
-        {
-            id: 4,
-            name: "Carbon Fiber 12 MP DJI Spark Drone Camera",
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTljymdrW1wftBJmxaP5RZ0FPS5j5X0rhNGqw&usqp=CAU",
-            description: "our team of drone experts have advised, built, and supplied drones all over the US. We’re your one-stop shop for everything related to remote control aircraft.",
-            price: 1500
-        },
-        {
-            id: 5,
-            name: "Carbon Fiber 12 MP DJI Spark Drone Camera",
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTljymdrW1wftBJmxaP5RZ0FPS5j5X0rhNGqw&usqp=CAU",
-            description: "our team of drone experts have advised, built, and supplied drones all over the US. We’re your one-stop shop for everything related to remote control aircraft.",
-            price: 1500
-        },
-        {
-            id: 6,
-            name: "Carbon Fiber 12 MP DJI Spark Drone Camera",
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTljymdrW1wftBJmxaP5RZ0FPS5j5X0rhNGqw&usqp=CAU",
-            description: "our team of drone experts have advised, built, and supplied drones all over the US. We’re your one-stop shop for everything related to remote control aircraft.",
-            price: 1500
-        }
-    ]
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+        const url = 'http://localhost:5000/products';
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                setProducts(data.slice(0, 6));
+                setLoading(false);
+            })
+    }, [])
+
+
     return (
         <div className="container mt-5" id="products">
-            <h1 className="text-center fw-bold mb-5 fst-italic">Our Products</h1>
+            <h1 className="text-center fw-bold mb-4 fst-italic">Our Products</h1>
+            <h4 className="text-center mb-5 text-secondary pb-5 fst-italic">See Our Diverse and Unique Drones</h4>
 
             <Row xs={1} md={3} className="g-2">
                 {
-                    products.map(product => <Product key={product.id} product={product}></Product>)
+                    loading ? <Spinner animation="grow" className="mx-auto" /> :
+                        products?.map(product => <Product key={product._id} product={product}></Product>)
                 }
             </Row>
 

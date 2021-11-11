@@ -2,22 +2,22 @@ import React from 'react';
 import { Card, Col, Button, Container, Row } from 'react-bootstrap';
 
 const Product = (props) => {
-    const { id, name, img, description, price } = props.product;
+    const { productName, productImg, shortDescription, productPrice } = props.product;
     return (
         <Col>
             <Card className="text-center h-100">
-                <Card.Img variant="top" src={img} style={{ height: '300px' }} />
-                <Card.Body>
-                    <Card.Title className="fw-bolder text-start">{name}</Card.Title>
+                <Card.Img variant="top" src={productImg} style={{ height: '300px' }} />
+                <Card.Body >
+                    <Card.Title className="fw-bolder text-start">{productName}</Card.Title>
                     <Card.Text className="text-start">
-                        {description}
+                        {shortDescription}
                     </Card.Text>
 
                     <Card.Footer>
                         <Row className="d-flex justify-content-between align-items-center">
                             <Col sm={7}>
                                 <Card.Title className="text-start fw-bold">
-                                    ${price}
+                                    ${productPrice}
                                 </Card.Title>
                             </Col>
                             <Col sm={5}>
