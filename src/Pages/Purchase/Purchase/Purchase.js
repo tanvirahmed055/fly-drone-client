@@ -26,12 +26,32 @@ const Purchase = () => {
             name: data.username,
             email: data.email,
             address: data.address,
-            location: data.location,
-            location: data.location,
-            location: data.location,
+            phone: data.phonenumber,
+            city: data.city,
+            productColor: data.color,
         }
 
+        newOrder.productPrice = product?.productPrice;
+        newOrder.status = 'pending';
 
+
+
+        const url = 'http://localhost:5000/orders';
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newOrder),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
 
 
     }
