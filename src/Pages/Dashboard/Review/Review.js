@@ -51,7 +51,7 @@ const Review = () => {
                             <h1>Add A New Review</h1>
 
 
-                            <label htmlFor="imageUrl">Add a Profile Image</label>
+                            <label htmlFor="imageUrl">Add a Profile Image of minimum 500*750 dimensions</label>
                             <input placeholder="image url" {...register("reviewerImg")} />
 
 

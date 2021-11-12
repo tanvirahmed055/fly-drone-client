@@ -23,8 +23,9 @@ const Dashboard = () => {
 
     let { path, url } = useRouteMatch();
 
-    const { handleLogOut } = useAuth();
+    const { handleLogOut, role } = useAuth();
 
+    console.log('inside dashboard', role);
 
     return (
         <Container fluid>
@@ -37,27 +38,53 @@ const Dashboard = () => {
                     </Link>
 
                     <ul className="text-center text-white pt-4 mt-4 pe-5">
-                        <li className="pb-4">
-                            <Link to={`${url}/addAProduct`} className="text-center text-white fw-bolder ">Add A Product</Link>
-                        </li>
-                        <li className="pb-4">
-                            <Link to={`${url}/makeAdmin`} className="text-center text-white fw-bolder ">Make Admin</Link>
-                        </li>
-                        <li className="pb-4">
-                            <Link to={`${url}/manageAllOrders`} className="text-center text-white fw-bolder ">Manage All Orders</Link>
-                        </li>
-                        <li className="pb-4">
-                            <Link to={`${url}/manageProducts`} className="text-center text-white fw-bolder ">Manage Products</Link>
-                        </li>
-                        <li className="pb-4">
-                            <Link to={`${url}/MyOrders`} className="text-center text-white fw-bolder ">My Orders</Link>
-                        </li>
-                        <li className="pb-4">
-                            <Link to={`${url}/pay`} className="text-center text-white fw-bolder ">Pay</Link>
-                        </li>
-                        <li className="pb-4">
-                            <Link to={`${url}/review`} className="text-center text-white fw-bolder ">Review</Link>
-                        </li>
+
+                        {
+                            (role === 'admin') ? <li className="pb-4">
+                                <Link to={`${url}/manageAllOrders`} className="text-center text-white fw-bolder ">Manage All Orders</Link>
+                            </li> : <li className="pb-4">
+                                <Link to={`${url}/MyOrders`} className="text-center text-white fw-bolder ">My Orders</Link>
+                            </li>
+                        }
+
+
+
+
+
+                        {
+                            (role === 'admin') ? <li className="pb-4">
+                                <Link to={`${url}/addAProduct`} className="text-center text-white fw-bolder ">Add A Product</Link>
+                            </li> : <li className="pb-4">
+                                <Link to={`${url}/review`} className="text-center text-white fw-bolder ">Review</Link>
+                            </li>
+                        }
+
+
+
+
+
+
+                        {
+                            (role === 'admin') ? <li className="pb-4">
+                                <Link to={`${url}/makeAdmin`} className="text-center text-white fw-bolder ">Make Admin</Link>
+                            </li> : <li className="pb-4">
+                                <Link to={`${url}/pay`} className="text-center text-white fw-bolder ">Pay</Link>
+                            </li>
+                        }
+
+                        {
+                            (role === 'admin') ? <li className="pb-4">
+                                <Link to={`${url}/manageProducts`} className="text-center text-white fw-bolder ">Manage Products</Link>
+                            </li> : null
+                        }
+
+
+
+
+
+
+
+
                         <li>
                             <Link to="/">
                                 <Button variant="danger" className="me-3 mb-1 fw-bold text-white" size="lg" onClick={() => handleLogOut()}>Logout</Button>

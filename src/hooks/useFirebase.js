@@ -11,6 +11,8 @@ const useFirebase = () => {
 
     const [loading, setLoading] = useState(true);
 
+    const [role, setRole] = useState('');
+
     const auth = getAuth();
 
 
@@ -26,24 +28,53 @@ const useFirebase = () => {
     }
 
 
+
+
+
     useEffect(() => {
 
         const unsubscribed = onAuthStateChanged(auth, (user) => {
             if (user) {
+                //console.log(user?.email);
                 // User is signed in, see docs for a list of available properties
                 // https://firebase.google.com/docs/reference/js/firebase.User
                 setUserInfo(user);
                 // ...
 
+                const url = `http://localhost:5000/user?email=${user?.email}`
+                fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        setRole(data?.role)
+                        console.log('checking role', data?.role);
+                        console.log('printing role', role);
+
+                    })
+
+
             } else {
                 // User is signed out
                 // ...
                 setUserInfo({});
+                setRole('');
+
             }
             setLoading(false);
         });
         return () => unsubscribed;
     }, [])
+
+
+    // const checkAccessLevel = () => {
+    //     if (storedUser?.role === 'admin') {
+    //         setIsAdmin(true);
+
+    //     } else {
+    //         setIsAdmin(false);
+    //     }
+
+    // }
+
 
     const handleLogOut = () => {
         signOut(auth).then(() => {
@@ -64,7 +95,8 @@ const useFirebase = () => {
         updateProfile,
         auth,
         loading,
-        setLoading
+        setLoading,
+        role
     };
 
 };
