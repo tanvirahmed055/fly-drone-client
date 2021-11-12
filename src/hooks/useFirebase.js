@@ -11,6 +11,8 @@ const useFirebase = () => {
 
     const [loading, setLoading] = useState(true);
 
+    const [userLoading, setUserLoading] = useState(true);
+
     const [role, setRole] = useState('');
 
     const auth = getAuth();
@@ -42,12 +44,14 @@ const useFirebase = () => {
                 // ...
 
                 const url = `http://localhost:5000/user?email=${user?.email}`
+
                 fetch(url)
                     .then(res => res.json())
                     .then(data => {
                         setRole(data?.role)
                         console.log('checking role', data?.role);
                         console.log('printing role', role);
+                        setUserLoading(false);
 
                     })
 
@@ -96,7 +100,8 @@ const useFirebase = () => {
         auth,
         loading,
         setLoading,
-        role
+        role,
+        userLoading
     };
 
 };

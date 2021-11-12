@@ -17,6 +17,7 @@ import MyOrders from '../MyOrders/MyOrders';
 import Pay from '../Pay/Pay';
 import Review from '../Review/Review';
 import useAuth from '../../../hooks/useAuth';
+import AdminRoute from '../../Login/AdminRoute/AdminRoute';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -39,7 +40,7 @@ const Dashboard = () => {
 
                     <ul className="text-center text-white pt-4 mt-4 pe-5">
 
-                        {
+                        {/* {
                             (role === 'admin') ? <li className="pb-4">
                                 <Link to={`${url}/manageAllOrders`} className="text-center text-white fw-bolder ">Manage All Orders</Link>
                             </li> : <li className="pb-4">
@@ -76,7 +77,23 @@ const Dashboard = () => {
                             (role === 'admin') ? <li className="pb-4">
                                 <Link to={`${url}/manageProducts`} className="text-center text-white fw-bolder ">Manage Products</Link>
                             </li> : null
+                        } */}
+
+
+                        {
+                            (role === 'admin') && <li className="pb-4">
+                                <Link to={`${url}/manageAllOrders`} className="text-center text-white fw-bolder ">Manage All Orders</Link>
+                            </li>
                         }
+
+                        {
+                            (role === 'user') && <li className="pb-4">
+                                <Link to={`${url}/MyOrders`} className="text-center text-white fw-bolder ">My Orders</Link>
+                            </li>
+                        }
+
+
+
 
 
 
@@ -99,18 +116,18 @@ const Dashboard = () => {
                             <DashboardHome></DashboardHome>
                         </Route>
 
-                        <Route path={`${path}/addAProduct`}>
+                        <AdminRoute path={`${path}/addAProduct`}>
                             <AddAProduct></AddAProduct>
-                        </Route>
-                        <Route path={`${path}/makeAdmin`}>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/makeAdmin`}>
                             <MakeAdmin></MakeAdmin>
-                        </Route>
-                        <Route path={`${path}/manageAllOrders`}>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/manageAllOrders`}>
                             <ManageAllOrders></ManageAllOrders>
-                        </Route>
-                        <Route path={`${path}/manageProducts`}>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/manageProducts`}>
                             <ManageProducts></ManageProducts>
-                        </Route>
+                        </AdminRoute>
                         <Route path={`${path}/myOrders`}>
                             <MyOrders></MyOrders>
                         </Route>
