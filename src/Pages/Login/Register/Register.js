@@ -46,7 +46,7 @@ const Register = () => {
                 });
 
                 savedUser(data.name, data.email)
-
+                reset();
                 history.replace('/login')
 
             })
@@ -55,12 +55,14 @@ const Register = () => {
                 const errorMessage = error.message;
                 // ..
             });
-        reset();
+
+
+
     }
 
 
     const savedUser = (name, email) => {
-        const user = { name, email };
+        const user = { name, email, role: 'user' };
         console.log(user);
         const url = 'http://localhost:5000/users';
 
