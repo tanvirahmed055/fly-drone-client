@@ -13,7 +13,7 @@ const Review = () => {
         const newReview = {
             reviewerImg: data.reviewerImg,
             reviewerName: data.name,
-            reviewerDesignation: data.designation,
+            reviewerOccupation: data.occupation,
             description: data.description,
             rating: data.rating
         };
@@ -59,11 +59,8 @@ const Review = () => {
                             <input placeholder="name of the reviewer" {...register("name")} />
 
 
-                            <label htmlFor="designation">Designation</label>
-                            <input placeholder="your designation" {...register("designation")} />
-
-                            <label htmlFor="productprice">Price</label>
-                            <input type="number" placeholder="product price" {...register("productPrice")} />
+                            <label htmlFor="designation">Your Occupation</label>
+                            <input placeholder="your occupation" {...register("occupation")} />
 
                             <label htmlFor="description">Description</label>
                             <input

@@ -18,7 +18,7 @@ const OrderReviews = () => {
                 setReviews(data);
                 setLoading(false);
             })
-    }, [])
+    }, [reviews])
 
 
     return (
