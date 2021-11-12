@@ -1,10 +1,92 @@
 import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { useForm } from "react-hook-form";
+
 
 const Review = () => {
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+    const onSubmit = data => {
+        //console.log(data);
+
+        const newReview = {
+            reviewerImg: data.reviewerImg,
+            reviewerName: data.name,
+            reviewerDesignation: data.designation,
+            description: data.description,
+            rating: data.rating
+        };
+
+        console.log(newReview);
+
+        const url = 'http://localhost:5000/addReview';
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newReview),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+        //reset();
+
+    }
+
+
     return (
-        <div>
-            <h2>This is Review Page</h2>
-        </div>
+        <Container>
+            <Row>
+                <Col xs={12}>
+                    <Container className="order-form-container p-3 mt-3">
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <h1>Add A New Review</h1>
+
+
+                            <label htmlFor="imageUrl">Add a Profile Image</label>
+                            <input placeholder="image url" {...register("reviewerImg")} />
+
+
+                            <label htmlFor="name">Your Name</label>
+                            <input placeholder="name of the reviewer" {...register("name")} />
+
+
+                            <label htmlFor="designation">Designation</label>
+                            <input placeholder="your designation" {...register("designation")} />
+
+                            <label htmlFor="productprice">Price</label>
+                            <input type="number" placeholder="product price" {...register("productPrice")} />
+
+                            <label htmlFor="description">Description</label>
+                            <input
+                                placeholder=" description of product"
+                                type="text"
+                                {...register("description")}
+                            />
+
+                            <label htmlFor="rating">Give a rating out 5</label>
+                            <input type="number" placeholder="give a rating out of 5" {...register("rating")} />
+
+
+                            <div style={{ color: "red" }}>
+                                {Object.keys(errors).length > 0 &&
+                                    "There are errors, check your console."}
+                            </div>
+                            <input type="submit" />
+                        </form>
+                    </Container>
+
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

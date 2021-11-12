@@ -7,10 +7,9 @@ import Spinner from 'react-bootstrap/Spinner';
 const Products = () => {
 
     const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setLoading(true);
         const url = 'http://localhost:5000/products';
         fetch(url)
             .then(res => res.json())

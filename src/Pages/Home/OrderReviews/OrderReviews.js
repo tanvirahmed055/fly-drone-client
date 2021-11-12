@@ -7,33 +7,18 @@ import './OrderReviews.css';
 
 const OrderReviews = () => {
 
-    const clients = [
-        {
-            id: 1,
-            name: "Smith",
-            "occupation": "CEO & Founder",
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTljymdrW1wftBJmxaP5RZ0FPS5j5X0rhNGqw&usqp=CAU",
-            description: "Our team of drone experts have advised, built, and supplied drones all over the US. We’re your one-stop shop for everything related to remote control aircraft.",
-            rating: 3
-        },
-        {
-            id: 2,
-            name: "Andrew",
-            "occupation": "CEO & Founder",
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTljymdrW1wftBJmxaP5RZ0FPS5j5X0rhNGqw&usqp=CAU",
-            description: "Our team of drone experts have advised, built, and supplied drones all over the US. We’re your one-stop shop for everything related to remote control aircraft.",
-            rating: 5
-        },
-        {
-            id: 3,
-            name: "Trev",
-            "occupation": "CEO & Founder",
-            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTljymdrW1wftBJmxaP5RZ0FPS5j5X0rhNGqw&usqp=CAU",
-            description: "Our team of drone experts have advised, built, and supplied drones all over the US. We’re your one-stop shop for everything related to remote control aircraft.",
-            rating: 4
-        }
+    const [reviews, setReviews] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    ]
+    useEffect(() => {
+        const url = 'http://localhost:5000/reviews';
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                setReviews(data);
+                setLoading(false);
+            })
+    }, [])
 
 
     return (
@@ -43,7 +28,7 @@ const OrderReviews = () => {
             <Row xs={1} md={3} className="g-4">
                 {
 
-                    clients?.map(client => <OrderReview key={client?.id} client={client}></OrderReview>)
+                    reviews?.map(review => <OrderReview key={review?._id} review={review}></OrderReview>)
 
                 }
             </Row>
