@@ -16,11 +16,15 @@ import ManageProducts from '../ManageProducts/ManageProducts';
 import MyOrders from '../MyOrders/MyOrders';
 import Pay from '../Pay/Pay';
 import Review from '../Review/Review';
+import useAuth from '../../../hooks/useAuth';
 import './Dashboard.css';
 
 const Dashboard = () => {
 
     let { path, url } = useRouteMatch();
+
+    const { handleLogOut } = useAuth();
+
 
     return (
         <Container fluid>
@@ -56,7 +60,7 @@ const Dashboard = () => {
                         </li>
                         <li>
                             <Link to="/">
-                                <Button variant="danger" className="me-3 mb-1 fw-bold text-white" size="lg">Logout</Button>
+                                <Button variant="danger" className="me-3 mb-1 fw-bold text-white" size="lg" onClick={() => handleLogOut()}>Logout</Button>
                             </Link>
                         </li>
                     </ul>
