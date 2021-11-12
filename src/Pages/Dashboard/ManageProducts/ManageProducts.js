@@ -1,10 +1,83 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Button, Table, Row, Col, Container } from 'react-bootstrap';
+import useAuth from '../../../hooks/useAuth';
+import Spinner from 'react-bootstrap/Spinner';
 
 const ManageProducts = () => {
+
+    const { userInfo } = useAuth();
+
+    const [products, setProducts] = useState([]);
+
+    const [loading, setLoading] = useState(true);
+
+
+    useEffect(() => {
+        const url = `http://localhost:5000/products`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                setProducts(data)
+                //console.log(orders)
+                setLoading(false);
+            })
+    }, [products])
+
+    const handleDelete = id => {
+        //console.log(id);
+
+
+    }
+
+
+
+
     return (
-        <div>
-            <h2>This is Manage Products Page</h2>
-        </div>
+        <Container>
+            <Row>
+                {
+                    loading ? <Spinner animation="grow" /> :
+                        <Col xs={12}>
+                            <h1 className="text-center mb-4">My Products</h1>
+                            <h4 className="text-center mb-5 text-secondary">See all of your orders here</h4>
+                            <h2 className="text-center mb-5 ">Number of Orders: {products?.length}</h2>
+
+                            {
+                                <Table responsive="sm">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Delete</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+
+                                            products?.map((product, index) => {
+
+                                                return <tr key={product?._id}>
+                                                    <td>{index}</td>
+                                                    <td>{product?.productName}</td>
+                                                    <td>{product?.productPrice}</td>
+
+                                                    <td>  <Button variant="danger" onClick={() => handleDelete(product?._id)} >Delete</Button>
+                                                    </td>
+
+                                                </tr>
+                                            })
+                                        }
+
+                                    </tbody>
+                                </Table>
+                            }
+                        </Col>
+                }
+            </Row>
+
+        </Container >
     );
 };
 
