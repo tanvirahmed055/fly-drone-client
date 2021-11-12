@@ -25,7 +25,20 @@ const ManageProducts = () => {
 
     const handleDelete = id => {
         //console.log(id);
+        const confirmation = window.confirm("Are you sure you want to delete this product?");
 
+        if (confirmation) {
+            fetch(`http://localhost:5000/deleteProduct/${id}`, {
+                method: 'DELETE',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    //console.log('Success:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
 
     }
 
