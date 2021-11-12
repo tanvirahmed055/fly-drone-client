@@ -42,6 +42,28 @@ const ManageAllOrders = () => {
         }
     }
 
+    const handleUpdate = id => {
+        const url = 'http://localhost:5000/updateStatus';
+
+        const orderInfo = {
+            orderId: id
+        }
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderInfo),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
 
     return (
         <Container>
@@ -64,6 +86,7 @@ const ManageAllOrders = () => {
                                             <th>Email</th>
                                             <th>Status</th>
                                             <th>Delete</th>
+                                            <th>Update</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -82,6 +105,8 @@ const ManageAllOrders = () => {
                                                     <td>  <Button variant="danger" onClick={() => handleDelete(order?._id)} >Delete</Button>
                                                     </td>
 
+                                                    <td><Button variant="danger" onClick={() => handleUpdate(order?._id)} >Update</Button>
+                                                    </td>
 
                                                 </tr>
                                             })
@@ -94,7 +119,7 @@ const ManageAllOrders = () => {
                 }
             </Row>
 
-        </Container>
+        </Container >
 
     );
 };
