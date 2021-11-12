@@ -105,7 +105,7 @@ const ManageAllOrders = () => {
                                                     <td>  <Button variant="danger" onClick={() => handleDelete(order?._id)} >Delete</Button>
                                                     </td>
 
-                                                    <td><Button variant="danger" onClick={() => handleUpdate(order?._id)} >Update</Button>
+                                                    <td><Button variant="success" onClick={() => handleUpdate(order?._id)} >Update</Button>
                                                     </td>
 
                                                 </tr>

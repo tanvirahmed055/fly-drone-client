@@ -14,7 +14,6 @@ const Explore = () => {
     let history = useHistory();
 
     useEffect(() => {
-        setLoading(true);
         const url = 'http://localhost:5000/products';
         fetch(url)
             .then(res => res.json())
@@ -22,7 +21,7 @@ const Explore = () => {
                 setProducts(data);
                 setLoading(false);
             })
-    }, [])
+    }, [products])
     return (
         <>
             <Header></Header>
