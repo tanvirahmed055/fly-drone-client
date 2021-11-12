@@ -39,68 +39,50 @@ const Dashboard = () => {
                     </Link>
 
                     <ul className="text-center text-white pt-4 mt-4 pe-5">
-
-                        {/* {
-                            (role === 'admin') ? <li className="pb-4">
-                                <Link to={`${url}/manageAllOrders`} className="text-center text-white fw-bolder ">Manage All Orders</Link>
-                            </li> : <li className="pb-4">
-                                <Link to={`${url}/MyOrders`} className="text-center text-white fw-bolder ">My Orders</Link>
-                            </li>
-                        }
-
-
-
-
-
-                        {
-                            (role === 'admin') ? <li className="pb-4">
-                                <Link to={`${url}/addAProduct`} className="text-center text-white fw-bolder ">Add A Product</Link>
-                            </li> : <li className="pb-4">
-                                <Link to={`${url}/review`} className="text-center text-white fw-bolder ">Review</Link>
-                            </li>
-                        }
-
-
-
-
-
-
-                        {
-                            (role === 'admin') ? <li className="pb-4">
-                                <Link to={`${url}/makeAdmin`} className="text-center text-white fw-bolder ">Make Admin</Link>
-                            </li> : <li className="pb-4">
-                                <Link to={`${url}/pay`} className="text-center text-white fw-bolder ">Pay</Link>
-                            </li>
-                        }
-
-                        {
-                            (role === 'admin') ? <li className="pb-4">
-                                <Link to={`${url}/manageProducts`} className="text-center text-white fw-bolder ">Manage Products</Link>
-                            </li> : null
-                        } */}
-
-
                         {
                             (role === 'admin') && <li className="pb-4">
                                 <Link to={`${url}/manageAllOrders`} className="text-center text-white fw-bolder ">Manage All Orders</Link>
                             </li>
                         }
 
+
+                        {
+                            (role === 'admin') && <li className="pb-4">
+                                <Link to={`${url}/addAProduct`} className="text-center text-white fw-bolder ">Add A Product</Link>
+                            </li>
+                        }
+
+                        {
+                            (role === 'admin') && <li className="pb-4">
+                                <Link to={`${url}/makeAdmin`} className="text-center text-white fw-bolder ">Make Admin</Link>
+                            </li>
+                        }
+
+                        {
+                            (role === 'admin') && <li className="pb-4">
+                                <Link to={`${url}/manageProducts`} className="text-center text-white fw-bolder ">Manage Products</Link>
+                            </li>
+                        }
+
                         {
                             (role === 'user') && <li className="pb-4">
-                                <Link to={`${url}/MyOrders`} className="text-center text-white fw-bolder ">My Orders</Link>
+                                <Link to={`${url}/myOrders`} className="text-center text-white fw-bolder ">My Orders</Link>
                             </li>
                         }
 
 
+                        {
+                            (role === 'user') && <li className="pb-4">
+                                <Link to={`${url}/review`} className="text-center text-white fw-bolder ">Review</Link>
+                            </li>
+                        }
 
 
-
-
-
-
-
-
+                        {
+                            (role === 'user') && <li className="pb-4">
+                                <Link to={`${url}/pay`} className="text-center text-white fw-bolder ">Pay</Link>
+                            </li>
+                        }
 
                         <li>
                             <Link to="/">
@@ -140,7 +122,7 @@ const Dashboard = () => {
                     </Switch>
                 </Col>
             </Row>
-        </Container>
+        </Container >
     );
 };
 
