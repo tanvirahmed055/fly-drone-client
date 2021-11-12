@@ -3,10 +3,15 @@ import { Col, Container, Row, Card, Button } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import Header from '../../Shared/Header/Header';
 import Footer from '../../Shared/Footer/Footer';
+import {
+    useHistory
+} from "react-router-dom";
 
 const Explore = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+
+    let history = useHistory();
 
     useEffect(() => {
         setLoading(true);
@@ -45,7 +50,7 @@ const Explore = () => {
                                                     </Card.Title>
                                                 </Col>
                                                 <Col sm={5}>
-                                                    <Button variant="warning" size="lg" className="fw-bolder">
+                                                    <Button variant="warning" size="lg" className="fw-bolder" onClick={() => history.push(`/purchase/${product?._id}`)}>
                                                         Purchase
                                                     </Button>
                                                 </Col>

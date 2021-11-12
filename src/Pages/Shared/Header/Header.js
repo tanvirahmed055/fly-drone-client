@@ -22,7 +22,7 @@ const Header = () => {
 
                         {userInfo?.displayName && <Nav.Link className="me-2 fw-bold text-white" >Signed in as: {userInfo?.displayName}</Nav.Link>}
 
-                        <HashLink className="me-2 nav-link text-white" style={{ fontWeight: 'bold' }} to="">Explore</HashLink>
+                        <HashLink className="me-2 nav-link text-white" style={{ fontWeight: 'bold' }} to="/explore">Explore</HashLink>
 
 
                         <Link to="/dashboard">
