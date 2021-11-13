@@ -25,8 +25,10 @@ const Header = () => {
                         <HashLink className="me-2 nav-link text-white" style={{ fontWeight: 'bold' }} to="/explore">Explore</HashLink>
 
 
-                        {userInfo?.displayName && <Link to="/dashboard">
+                        {userInfo?.displayName ? <Link to="/dashboard">
                             <Button variant="primary" className="me-3 fw-bold">Dashboard</Button>
+                        </Link> : <Link to="/register">
+                            <Button variant="danger" className="me-3">Signup</Button>
                         </Link>}
 
 
@@ -40,9 +42,7 @@ const Header = () => {
                             </Link>
                         }
 
-                        <Link to="/register">
-                            <Button variant="danger" className="me-3">Signup</Button>
-                        </Link>
+
 
                     </Nav>
                 </Navbar.Collapse>
