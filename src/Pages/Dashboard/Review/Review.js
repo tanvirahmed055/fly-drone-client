@@ -37,7 +37,7 @@ const Review = () => {
                 console.error('Error:', error);
             });
 
-        //reset();
+        reset();
 
     }
 

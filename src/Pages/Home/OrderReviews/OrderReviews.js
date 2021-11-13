@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
-import Rating from "react-rating";
 import OrderReview from '../OrderReview/OrderReview';
 import Spinner from 'react-bootstrap/Spinner';
 import './OrderReviews.css';
@@ -11,6 +10,9 @@ const OrderReviews = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
 
+
+
+
     useEffect(() => {
         const abortController = new AbortController();
         const signal = abortController.signal;
@@ -20,11 +22,13 @@ const OrderReviews = () => {
             .then(data => {
                 setReviews(data);
                 setLoading(false);
+
             })
-        return () => {
-            abortController.abort()
+        return function cleanup() {
+            abortController.abort();
         }
-    }, [reviews])
+
+    }, [])
 
 
     return (
