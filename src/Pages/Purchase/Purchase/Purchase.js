@@ -37,7 +37,7 @@ const Purchase = () => {
 
 
 
-        const url = 'http://localhost:5000/orders';
+        const url = 'https://morning-plateau-79651.herokuapp.com/orders';
 
         fetch(url, {
             method: 'POST',
@@ -59,7 +59,7 @@ const Purchase = () => {
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/product?id=${id}`
+        const url = `https://morning-plateau-79651.herokuapp.com/product?id=${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data))

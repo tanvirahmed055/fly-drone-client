@@ -13,7 +13,7 @@ const OrderReviews = () => {
 
     useEffect(() => {
 
-        const url = 'http://localhost:5000/reviews';
+        const url = 'https://morning-plateau-79651.herokuapp.com/reviews';
         fetch(url)
             .then(res => res.json())
             .then(data => {

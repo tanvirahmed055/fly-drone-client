@@ -43,7 +43,7 @@ const useFirebase = () => {
                 setUserInfo(user);
                 // ...
 
-                const url = `http://localhost:5000/user?email=${user?.email}`
+                const url = `https://morning-plateau-79651.herokuapp.com/user?email=${user?.email}`
 
                 fetch(url)
                     .then(res => res.json())

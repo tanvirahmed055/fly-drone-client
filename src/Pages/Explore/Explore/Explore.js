@@ -14,7 +14,7 @@ const Explore = () => {
     let history = useHistory();
 
     useEffect(() => {
-        const url = 'http://localhost:5000/products';
+        const url = 'https://morning-plateau-79651.herokuapp.com/products';
         fetch(url)
             .then(res => res.json())
             .then(data => {

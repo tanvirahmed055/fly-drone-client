@@ -23,7 +23,7 @@ const MakeAdmin = () => {
 
         console.log(inputEmail);
 
-        const url = 'http://localhost:5000/makeAdmin';
+        const url = 'https://morning-plateau-79651.herokuapp.com/makeAdmin';
 
         fetch(url, {
             method: 'PUT',

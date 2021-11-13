@@ -13,7 +13,7 @@ const ManageAllOrders = () => {
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/allOrders`
+        const url = `https://morning-plateau-79651.herokuapp.com/allOrders`
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -29,7 +29,7 @@ const ManageAllOrders = () => {
         const confirmation = window.confirm("Are you sure you want to delete your order?");
 
         if (confirmation) {
-            fetch(`http://localhost:5000/deleteOrder/${id}`, {
+            fetch(`https://morning-plateau-79651.herokuapp.com/deleteOrder/${id}`, {
                 method: 'DELETE',
             })
                 .then(response => response.json())
@@ -43,7 +43,7 @@ const ManageAllOrders = () => {
     }
 
     const handleUpdate = id => {
-        const url = 'http://localhost:5000/updateStatus';
+        const url = 'https://morning-plateau-79651.herokuapp.com/updateStatus';
 
         const orderInfo = {
             orderId: id
