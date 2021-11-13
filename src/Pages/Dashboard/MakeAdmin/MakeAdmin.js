@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import {
-
-    useParams
-
-} from "react-router-dom";
+import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
-import Image from 'react-bootstrap/Image';
-import useAuth from '../../../hooks/useAuth';
+
 
 const MakeAdmin = () => {
-    let { makeAdmin } = useParams();
+
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 

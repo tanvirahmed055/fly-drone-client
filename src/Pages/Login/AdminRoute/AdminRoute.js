@@ -4,7 +4,7 @@ import useAuth from '../../../hooks/useAuth';
 import Spinner from 'react-bootstrap/Spinner';
 
 const AdminRoute = ({ children, ...rest }) => {
-    let { userInfo, loading, role, userLoading } = useAuth();
+    let { role, userLoading } = useAuth();
 
     return (
         <Route

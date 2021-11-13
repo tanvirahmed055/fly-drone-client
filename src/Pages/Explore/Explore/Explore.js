@@ -63,8 +63,6 @@ const Explore = () => {
                                 </Card>
                             </Col >)
                     }
-
-
                 </Row>
             </Container>
             <Footer></Footer>

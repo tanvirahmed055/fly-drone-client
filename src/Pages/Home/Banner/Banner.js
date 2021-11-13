@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, Carousel } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 import './Banner.css';
-import { HashLink } from 'react-router-hash-link';
 import banner1 from '../../../img/banner1.jpeg';
 import banner2 from '../../../img/banner2.jpeg';
 import banner3 from '../../../img/banner3.jpeg';

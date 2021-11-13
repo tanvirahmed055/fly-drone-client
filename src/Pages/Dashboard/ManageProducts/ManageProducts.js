@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Table, Row, Col, Container } from 'react-bootstrap';
-import useAuth from '../../../hooks/useAuth';
 import Spinner from 'react-bootstrap/Spinner';
 
 const ManageProducts = () => {
 
-    const { userInfo } = useAuth();
 
     const [products, setProducts] = useState([]);
 
@@ -52,8 +50,8 @@ const ManageProducts = () => {
                     loading ? <Spinner animation="grow" /> :
                         <Col xs={12}>
                             <h1 className="text-center mb-4">My Products</h1>
-                            <h4 className="text-center mb-5 text-secondary">See all of your orders here</h4>
-                            <h2 className="text-center mb-5 ">Number of Orders: {products?.length}</h2>
+                            <h4 className="text-center mb-5 text-secondary">See all the available products here</h4>
+                            <h2 className="text-center mb-5 ">Number of Products: {products?.length}</h2>
 
                             {
                                 <Table responsive="sm">

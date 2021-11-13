@@ -23,11 +23,13 @@ const Footer = () => {
                         <h3 className="text-center text-warning fw-bold mb-3">Useful Links</h3>
                         <ul>
 
-                            <HashLink className="me-2 nav-link pb-3" style={{ color: 'white' }} to="/home#services"><i className="fas fa-check"></i>&nbsp;Products</HashLink>
+                            <HashLink className="me-2 nav-link pb-3" style={{ color: 'white' }} to="/home#products"><i className="fas fa-check"></i>&nbsp;Products</HashLink>
 
                             <HashLink className="me-2 nav-link pb-3" style={{ color: 'white' }} to="/home#features"><i className="fas fa-check"></i>&nbsp;Features</HashLink>
 
-                            <HashLink className="me-2 nav-link pb-3" style={{ color: 'white' }} to="/home#clients"><i className="fas fa-check"></i>&nbsp;Reviews</HashLink>
+                            <HashLink className="me-2 nav-link pb-3" style={{ color: 'white' }} to="/home#reviews"><i className="fas fa-check"></i>&nbsp;Reviews</HashLink>
+
+                            <HashLink className="me-2 nav-link pb-3" style={{ color: 'white' }} to="/home#gallery"><i className="fas fa-check"></i>&nbsp;Gallery</HashLink>
                         </ul>
 
                     </Col>
@@ -37,16 +39,16 @@ const Footer = () => {
                         <h3 className="mb-4 text-warning fw-bold ">Contact Us</h3>
                         <div className="footer-addresss mb-3 text-center">
                             <i className="fas fa-map-marker-alt"></i>&nbsp;
-                            12, Mirpur, Dhaka, Bangladesh.
+                            19/1, Gulshan, Dhaka, Bangladesh.
                         </div>
 
                         <div className="footer-phone mb-3 text-center">
 
                             <i className="fas fa-envelope"></i>&nbsp;
-                            admin1_drone@yahoo.com
+                            fly_drone@yahoo.com
                             <br />
                             <i className="fas fa-envelope"></i>&nbsp;
-                            admin2_drone@gmail.com
+                            fly_drone@gmail.com
                         </div>
 
                         <div className="footer-phone mb-3 text-center">
@@ -69,7 +71,7 @@ const Footer = () => {
                             </Form.Group>
                             <Form.Group className="mb-1" controlId="exampleForm.ControlInput1">
 
-                                <Form.Control type="Email" placeholder="name@example.com" />
+                                <Form.Control type="Email" placeholder="Email" />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                                 <Form.Control as="textarea" rows={3} placeholder="Message" />

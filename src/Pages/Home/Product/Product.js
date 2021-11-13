@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Col, Button, Container, Row } from 'react-bootstrap';
+import { Card, Col, Button, Row } from 'react-bootstrap';
 import {
     useHistory
 } from "react-router-dom";

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Row } from 'react-bootstrap';
-import { Card, Col, Button } from 'react-bootstrap';
+import { Card, Col } from 'react-bootstrap';
 
 const VideoGallery = () => {
 
@@ -21,7 +21,7 @@ const VideoGallery = () => {
 
 
     return (
-        <div className="container mt-5 mb-5" id="services" style={{ maxWidth: '100vw' }}>
+        <div className="container mt-5 mb-5" id="gallery" style={{ maxWidth: '100vw' }}>
             <h5 className="text-start pt-5 mt-5 mb-1 text-primary">VIDEOS SHOT BY OUR DRONES</h5>
             <h1 className="text-start mb-5 text-dark">Showcase</h1>
             {<Row xs={1} md={3} className="gy-4">

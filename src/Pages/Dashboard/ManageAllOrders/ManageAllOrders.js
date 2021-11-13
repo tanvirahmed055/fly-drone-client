@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Table, Row, Col, Container } from 'react-bootstrap';
-import useAuth from '../../../hooks/useAuth';
 import Spinner from 'react-bootstrap/Spinner';
 
 const ManageAllOrders = () => {
-
-    const { userInfo } = useAuth();
 
     const [orders, setOrders] = useState([]);
 

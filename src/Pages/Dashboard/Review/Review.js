@@ -18,7 +18,7 @@ const Review = () => {
             rating: data.rating
         };
 
-        console.log(newReview);
+        //console.log(newReview);
 
         const url = 'https://morning-plateau-79651.herokuapp.com/addReview';
 

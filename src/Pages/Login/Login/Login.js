@@ -6,7 +6,6 @@ import {
     useHistory,
     useLocation
 } from "react-router-dom";
-import Spinner from 'react-bootstrap/Spinner';
 import './Login.css';
 
 const Login = () => {
@@ -14,7 +13,7 @@ const Login = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
 
-    const { handleLogin, setLoading } = useAuth();
+    const { handleLogin } = useAuth();
 
     let history = useHistory();
     let location = useLocation();
@@ -22,18 +21,19 @@ const Login = () => {
     let { from } = location.state || { from: { pathname: "/" } };
 
     const onSubmit = data => {
-        console.log(data);
+        //console.log(data);
 
         handleLogin(data.email, data.password)
             .then(result => {
                 // Signed in 
-                const user = result.user;
+                //const user = result.user;
                 // ...
                 history.push(from);
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
             });
 
         reset();

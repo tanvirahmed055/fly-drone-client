@@ -1,17 +1,16 @@
 import React from 'react';
-import { Col, Container, Image, Row, Button } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import useAuth from '../../../hooks/useAuth';
 import {
     useHistory
 } from "react-router-dom";
-import Spinner from 'react-bootstrap/Spinner';
 
 const Register = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const { handleRegistration, updateProfile, auth, setLoading, userInfo } = useAuth();
+    const { handleRegistration, updateProfile, auth } = useAuth();
 
     let history = useHistory();
 
@@ -19,7 +18,7 @@ const Register = () => {
 
 
     const onSubmit = (data, e) => {
-        console.log(data);
+        //console.log(data);
 
         const newUser = {
             name: data?.name,
@@ -27,7 +26,7 @@ const Register = () => {
             password: data?.password
         }
 
-        console.log(newUser);
+        //console.log(newUser);
 
 
         handleRegistration(data.name, data.email, data.password)
@@ -54,6 +53,7 @@ const Register = () => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 // ..
+                console.log(errorCode, errorMessage);
             });
 
 
