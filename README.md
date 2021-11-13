@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+# Project Name: FlyXDrone - A Premium Drone Provider
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Live Site Link
 
-In the project directory, you can run:
+<https://fly-drone-39bce.web.app/>
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Short Description
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This website is a premium exclusive drone provider website with diverse drone options.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Features & Functionalities
 
-### `npm run build`
+* Clients can see the in detail information of our  drones along with the unique features that we offer in our drones. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Only registered users will be able to purchase drone from this site and in order to place an order to purchase drone, users need to be logged in the site first. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Clients and Admins have separate dashboards for themselves. They can only access their resective dashboards.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Clients can see their orders along with the respective order status. They can also delete/cancel any order that they have ordered before. They can give reviews which will get added to the site.
 
-### `npm run eject`
+* Admins can add any new product to the website. They can also see all the orders made by the registerd users and manage those orders by updating the order status from pending to approved and can delete any order made by any user. They can also see all the products that are currently offered in the site and can delete any product from the site. They can also change any normal user into admin role.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* The client side of the website is built with React JS, React Router, React Context API, React-Bootstrap, React Hook Form, React Rating, React Router Hash Link, Firebase Authentication, Font Awesome Icons and Google Fonts. The client side is hosted with Firebase Hosting. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* The server side of the website is built with Node.js, Express.js, MongoDB. The server side of this website is hosted on Heroku.
