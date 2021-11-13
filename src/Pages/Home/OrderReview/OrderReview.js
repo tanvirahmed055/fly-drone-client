@@ -4,7 +4,7 @@ import Rating from "react-rating";
 import './OrderReview.css';
 
 const OrderReview = (props) => {
-    const { reviewerName, reviewerDesignation, reviewerImg, description, rating } = props.review;
+    const { reviewerName, reviewerOccupation, reviewerImg, description, rating } = props.review;
     return (
         <Col>
             <Card className="mt-5">
@@ -13,7 +13,7 @@ const OrderReview = (props) => {
                 <Card.Body>
                     <Card.Title>{reviewerName}</Card.Title>
                     <Card.Text>
-                        {reviewerDesignation}
+                        {reviewerOccupation}
                     </Card.Text>
                     <Rating initialRating={rating} emptySymbol="far fa-star star-icon-color fa-2x" fullSymbol="fas fa-star star-icon-color fa-2x" readonly className="pb-3"> </Rating>
                     <br />

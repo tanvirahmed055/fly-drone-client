@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 import Rating from "react-rating";
 import OrderReview from '../OrderReview/OrderReview';
+import Spinner from 'react-bootstrap/Spinner';
 import './OrderReviews.css';
 
 
@@ -11,12 +12,13 @@ const OrderReviews = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+
         const url = 'http://localhost:5000/reviews';
         fetch(url)
             .then(res => res.json())
             .then(data => {
                 setReviews(data);
-                setLoading(false);
+
             })
     }, [reviews])
 
