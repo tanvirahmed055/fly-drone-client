@@ -9,17 +9,21 @@ import './OrderReviews.css';
 const OrderReviews = () => {
 
     const [reviews, setReviews] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-
+        const abortController = new AbortController();
+        const signal = abortController.signal;
         const url = 'https://morning-plateau-79651.herokuapp.com/reviews';
-        fetch(url)
+        fetch(url, { signal: signal })
             .then(res => res.json())
             .then(data => {
                 setReviews(data);
-
+                setLoading(false);
             })
+        return () => {
+            abortController.abort()
+        }
     }, [reviews])
 
 

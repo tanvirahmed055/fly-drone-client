@@ -25,9 +25,12 @@ const Header = () => {
                         <HashLink className="me-2 nav-link text-white" style={{ fontWeight: 'bold' }} to="/explore">Explore</HashLink>
 
 
-                        <Link to="/dashboard">
+                        {userInfo?.displayName && <Link to="/dashboard">
                             <Button variant="primary" className="me-3 fw-bold">Dashboard</Button>
-                        </Link>
+                        </Link>}
+
+
+
 
                         {userInfo?.email ? <Link to="/">
                             <Button variant="warning" className="me-3 mb-1" onClick={() => handleLogOut()}>Logout</Button>
