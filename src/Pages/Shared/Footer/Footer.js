@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Container, FormControl, InputGroup, Button, Row, Form } from 'react-bootstrap';
+import { Col, Container, Button, Row, Form } from 'react-bootstrap';
 import './Footer.css';
 import { HashLink } from 'react-router-hash-link';
 

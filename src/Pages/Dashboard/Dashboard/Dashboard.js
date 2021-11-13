@@ -1,11 +1,9 @@
 import React from 'react';
 import { Row, Col, Button, Container } from 'react-bootstrap';
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
     Link,
-    useParams,
     useRouteMatch
 } from "react-router-dom";
 import AddAProduct from '../AddAProduct/AddAProduct';
@@ -26,7 +24,7 @@ const Dashboard = () => {
 
     const { handleLogOut, role } = useAuth();
 
-    console.log('inside dashboard', role);
+    //console.log('inside dashboard', role);
 
     return (
         <Container fluid>

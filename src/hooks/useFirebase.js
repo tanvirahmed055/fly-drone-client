@@ -49,8 +49,8 @@ const useFirebase = () => {
                     .then(res => res.json())
                     .then(data => {
                         setRole(data?.role)
-                        console.log('checking role', data?.role);
-                        console.log('printing role', role);
+                        //console.log('checking role', data?.role);
+                        //console.log('printing role', role);
                         setUserLoading(false);
 
                     })
@@ -67,17 +67,6 @@ const useFirebase = () => {
         });
         return () => unsubscribed;
     }, [])
-
-
-    // const checkAccessLevel = () => {
-    //     if (storedUser?.role === 'admin') {
-    //         setIsAdmin(true);
-
-    //     } else {
-    //         setIsAdmin(false);
-    //     }
-
-    // }
 
 
     const handleLogOut = () => {
