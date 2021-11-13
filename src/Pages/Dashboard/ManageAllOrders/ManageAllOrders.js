@@ -68,8 +68,8 @@ const ManageAllOrders = () => {
                 {
                     loading ? <Spinner animation="grow" /> :
                         <Col xs={12}>
-                            <h1 className="text-center mb-4">My Orders</h1>
-                            <h4 className="text-center mb-5 text-secondary">See all of your orders here</h4>
+                            <h1 className="text-center mb-4">All Orders</h1>
+                            <h4 className="text-center mb-5 text-secondary">See all orders here</h4>
                             <h2 className="text-center mb-5 ">Number of Orders: {orders?.length}</h2>
 
                             {
