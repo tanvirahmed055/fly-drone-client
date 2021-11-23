@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Card, Col } from 'react-bootstrap';
 import Rating from "react-rating";
 import './OrderReview.css';

@@ -20,11 +20,11 @@ const Register = () => {
     const onSubmit = (data, e) => {
         //console.log(data);
 
-        const newUser = {
-            name: data?.name,
-            email: data?.email,
-            password: data?.password
-        }
+        // const newUser = {
+        //     name: data?.name,
+        //     email: data?.email,
+        //     password: data?.password
+        // }
 
         //console.log(newUser);
 
@@ -32,7 +32,7 @@ const Register = () => {
         handleRegistration(data.name, data.email, data.password)
             .then(result => {
                 // Signed in 
-                const user = result.user;
+                //const user = result.user;
                 // ...
                 updateProfile(auth.currentUser, {
                     displayName: data.name,
