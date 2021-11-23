@@ -3,7 +3,7 @@ import { Col, Container, Image, Row } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import useAuth from '../../../hooks/useAuth';
 import {
-    useHistory,
+    useNavigate,
     useLocation
 } from "react-router-dom";
 import './Login.css';
@@ -15,7 +15,7 @@ const Login = () => {
 
     const { handleLogin } = useAuth();
 
-    let history = useHistory();
+    let navigate = useNavigate();
     let location = useLocation();
 
     let { from } = location.state || { from: { pathname: "/" } };
@@ -28,7 +28,7 @@ const Login = () => {
                 // Signed in 
                 //const user = result.user;
                 // ...
-                history.push(from);
+                navigate(from);
             })
             .catch((error) => {
                 const errorCode = error.code;

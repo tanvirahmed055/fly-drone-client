@@ -4,14 +4,14 @@ import Spinner from 'react-bootstrap/Spinner';
 import Header from '../../Shared/Header/Header';
 import Footer from '../../Shared/Footer/Footer';
 import {
-    useHistory
+    useNavigate
 } from "react-router-dom";
 
 const Explore = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    let history = useHistory();
+    let navigate = useNavigate();
 
     useEffect(() => {
         const url = 'https://morning-plateau-79651.herokuapp.com/products';
@@ -49,7 +49,7 @@ const Explore = () => {
                                                     </Card.Title>
                                                 </Col>
                                                 <Col sm={5}>
-                                                    <Button variant="warning" size="lg" className="fw-bolder" onClick={() => history.push(`/purchase/${product?._id}`)}>
+                                                    <Button variant="warning" size="lg" className="fw-bolder" onClick={() => navigate(`/purchase/${product?._id}`)}>
                                                         Purchase
                                                     </Button>
                                                 </Col>

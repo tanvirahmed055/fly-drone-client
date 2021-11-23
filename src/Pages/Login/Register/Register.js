@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import useAuth from '../../../hooks/useAuth';
 import {
-    useHistory
+    useNavigate
 } from "react-router-dom";
 
 const Register = () => {
@@ -12,7 +12,7 @@ const Register = () => {
 
     const { handleRegistration, updateProfile, auth } = useAuth();
 
-    let history = useHistory();
+    let navigate = useNavigate();
 
 
 
@@ -46,7 +46,7 @@ const Register = () => {
 
                 savedUser(data.name, data.email)
                 reset();
-                history.replace('/login')
+                navigate('/login')
 
             })
             .catch((error) => {
@@ -63,7 +63,7 @@ const Register = () => {
 
     const savedUser = (name, email) => {
         const user = { name, email, role: 'user' };
-        console.log(user);
+        //console.log(user);
         const url = 'https://morning-plateau-79651.herokuapp.com/users';
 
         fetch(url, {

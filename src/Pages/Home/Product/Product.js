@@ -1,13 +1,13 @@
 import React from 'react';
 import { Card, Col, Button, Row } from 'react-bootstrap';
 import {
-    useHistory
+    useNavigate
 } from "react-router-dom";
 
 const Product = (props) => {
     const { _id, productName, productImg, shortDescription, productPrice } = props.product;
 
-    let history = useHistory();
+    let navigate = useNavigate();
 
     return (
         <Col>
@@ -27,7 +27,7 @@ const Product = (props) => {
                                 </Card.Title>
                             </Col>
                             <Col sm={5}>
-                                <Button variant="warning" size="lg" className="fw-bolder" onClick={() => history.push(`/purchase/${_id}`)}>
+                                <Button variant="warning" size="lg" className="fw-bolder" onClick={() => navigate(`/purchase/${_id}`)}>
                                     Purchase
                                 </Button>
                             </Col>
