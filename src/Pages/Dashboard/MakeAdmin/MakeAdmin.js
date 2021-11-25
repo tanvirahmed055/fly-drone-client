@@ -1,12 +1,14 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
-
+import useAuth from '../../../hooks/useAuth';
 
 const MakeAdmin = () => {
 
+    const { token } = useAuth();
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
 
     const onSubmit = data => {
         console.log(data);
@@ -17,11 +19,12 @@ const MakeAdmin = () => {
 
         console.log(inputEmail);
 
-        const url = 'https://morning-plateau-79651.herokuapp.com/makeAdmin';
+        const url = 'http://localhost:5000/makeAdmin';
 
         fetch(url, {
             method: 'PUT',
             headers: {
+                'authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(inputEmail),

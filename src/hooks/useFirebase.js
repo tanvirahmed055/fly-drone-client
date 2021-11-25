@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import initializeAuthentication from '../Pages/Login/Firebase/firebase.init';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, getIdToken } from "firebase/auth";
 
 
 initializeAuthentication();
@@ -14,6 +14,8 @@ const useFirebase = () => {
     const [userLoading, setUserLoading] = useState(true);
 
     const [role, setRole] = useState('');
+
+    const [token, setToken] = useState('');
 
     const auth = getAuth();
 
@@ -43,7 +45,12 @@ const useFirebase = () => {
                 setUserInfo(user);
                 // ...
 
-                const url = `https://morning-plateau-79651.herokuapp.com/user?email=${user?.email}`
+                user.getIdToken(/* forceRefresh */ true).then(idToken => {
+                    setToken(idToken);
+                    console.log(idToken);
+                });
+
+                const url = `http://localhost:5000/user?email=${user?.email}`
 
                 fetch(url)
                     .then(res => res.json())
@@ -90,7 +97,8 @@ const useFirebase = () => {
         loading,
         setLoading,
         role,
-        userLoading
+        userLoading,
+        token
     };
 
 };

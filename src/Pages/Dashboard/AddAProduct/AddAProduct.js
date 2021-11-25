@@ -19,7 +19,7 @@ const AddAProduct = () => {
 
         console.log(newOrder);
 
-        const url = 'https://morning-plateau-79651.herokuapp.com/addProduct';
+        const url = 'http://localhost:5000/addProduct';
 
         fetch(url, {
             method: 'POST',
