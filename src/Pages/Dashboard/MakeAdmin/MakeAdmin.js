@@ -5,26 +5,27 @@ import useAuth from '../../../hooks/useAuth';
 
 const MakeAdmin = () => {
 
-    const { token } = useAuth();
+    //const { token } = useAuth();
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
 
     const onSubmit = data => {
-        console.log(data);
+        //console.log(data);
 
         const inputEmail = {
             email: data?.email
         }
 
-        console.log(inputEmail);
+        //console.log(inputEmail);
 
         const url = 'http://localhost:5000/makeAdmin';
 
+        //console.log(localStorage.getItem('idToken'));
         fetch(url, {
             method: 'PUT',
             headers: {
-                'authorization': `Bearer ${token}`,
+                'authorization': `Bearer ${localStorage.getItem('idToken')}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(inputEmail),

@@ -15,7 +15,7 @@ const useFirebase = () => {
 
     const [role, setRole] = useState('');
 
-    const [token, setToken] = useState('');
+    //const [token, setToken] = useState('');
 
     const auth = getAuth();
 
@@ -46,8 +46,9 @@ const useFirebase = () => {
                 // ...
 
                 user.getIdToken(/* forceRefresh */ true).then(idToken => {
-                    setToken(idToken);
-                    console.log(idToken);
+                    //setToken(idToken);
+                    localStorage.setItem('idToken', idToken);
+                    //console.log(idToken);
                 });
 
                 const url = `http://localhost:5000/user?email=${user?.email}`
@@ -68,6 +69,7 @@ const useFirebase = () => {
                 // ...
                 setUserInfo({});
                 setRole('');
+                localStorage.removeItem('idToken');
 
             }
             setLoading(false);
@@ -98,7 +100,7 @@ const useFirebase = () => {
         setLoading,
         role,
         userLoading,
-        token
+        //token
     };
 
 };

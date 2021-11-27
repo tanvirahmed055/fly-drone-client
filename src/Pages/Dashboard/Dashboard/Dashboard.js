@@ -49,21 +49,21 @@ const Dashboard = () => {
                             }
 
                             {
-                                (role === 'user') && <li className="pb-4">
+                                (role !== 'admin') && <li className="pb-4">
                                     <Link to="/dashboard/myOrders" className="text-center text-white fw-bolder ">My Orders</Link>
                                 </li>
                             }
 
 
                             {
-                                (role === 'user') && <li className="pb-4">
+                                (role !== 'admin') && <li className="pb-4">
                                     <Link to="/dashboard/review" className="text-center text-white fw-bolder ">Review</Link>
                                 </li>
                             }
 
 
                             {
-                                (role === 'user') && <li className="pb-4">
+                                (role !== 'admin') && <li className="pb-4">
                                     <Link to="/dashboard/pay" className="text-center text-white fw-bolder ">Pay</Link>
                                 </li>
                             }
