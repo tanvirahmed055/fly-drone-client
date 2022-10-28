@@ -110,8 +110,8 @@ const CheckoutForm = (props) => {
         order_items: {
           productName,
           productPrice,
-          status: "pending",
         },
+        order_status: "pending",
         transactionId: paymentIntent.id,
       };
 
