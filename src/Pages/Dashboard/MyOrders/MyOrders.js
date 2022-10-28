@@ -14,7 +14,7 @@ const MyOrders = () => {
     const userEmail = userInfo?.email;
 
     useEffect(() => {
-        const url = `https://morning-plateau-79651.herokuapp.com/orders?email=${userEmail}`
+        const url = `http://localhost:5000/orders?email=${userEmail}`
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -30,7 +30,7 @@ const MyOrders = () => {
         const confirmation = window.confirm("Are you sure you want to delete your order?");
 
         if (confirmation) {
-            fetch(`https://morning-plateau-79651.herokuapp.com/deleteOrder/${id}`, {
+            fetch(`http://localhost:5000/deleteOrder/${id}`, {
                 method: 'DELETE',
             })
                 .then(response => response.json())

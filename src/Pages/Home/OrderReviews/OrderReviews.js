@@ -15,7 +15,7 @@ const OrderReviews = () => {
     useEffect(() => {
         const abortController = new AbortController();
         const signal = abortController.signal;
-        const url = 'https://morning-plateau-79651.herokuapp.com/reviews';
+        const url = 'http://localhost:5000/reviews';
         fetch(url, { signal: signal })
             .then(res => res.json())
             .then(data => {

@@ -11,7 +11,7 @@ const ManageProducts = () => {
 
 
     useEffect(() => {
-        const url = `https://morning-plateau-79651.herokuapp.com/products`
+        const url = `http://localhost:5000/products`
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -26,7 +26,7 @@ const ManageProducts = () => {
         const confirmation = window.confirm("Are you sure you want to delete this product?");
 
         if (confirmation) {
-            fetch(`https://morning-plateau-79651.herokuapp.com/deleteProduct/${id}`, {
+            fetch(`http://localhost:5000/deleteProduct/${id}`, {
                 method: 'DELETE',
             })
                 .then(response => response.json())

@@ -64,7 +64,7 @@ const Register = () => {
     const savedUser = (name, email) => {
         const user = { name, email, role: 'user' };
         //console.log(user);
-        const url = 'https://morning-plateau-79651.herokuapp.com/users';
+        const url = 'http://localhost:5000/users';
 
         fetch(url, {
             method: 'POST',

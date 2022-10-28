@@ -20,7 +20,7 @@ const Review = () => {
 
         //console.log(newReview);
 
-        const url = 'https://morning-plateau-79651.herokuapp.com/addReview';
+        const url = 'http://localhost:5000/addReview';
 
         fetch(url, {
             method: 'POST',

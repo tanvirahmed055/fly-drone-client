@@ -14,7 +14,7 @@ const Explore = () => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        const url = 'https://morning-plateau-79651.herokuapp.com/products';
+        const url = 'http://localhost:5000/products';
         fetch(url)
             .then(res => res.json())
             .then(data => {
