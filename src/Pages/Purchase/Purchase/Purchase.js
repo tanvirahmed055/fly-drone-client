@@ -1,126 +1,134 @@
-import React, { useState, useEffect } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import {
-    useParams
-} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import Image from 'react-bootstrap/Image';
-import useAuth from '../../../hooks/useAuth';
-import Header from '../../Shared/Header/Header';
-import Footer from '../../Shared/Footer/Footer';
+import Image from "react-bootstrap/Image";
+import useAuth from "../../../hooks/useAuth";
+import Header from "../../Shared/Header/Header";
+import Footer from "../../Shared/Footer/Footer";
+import CheckoutForm from "./components/CheckoutFormModal";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51JvvPUEz32mQlkG5L683R8ntXgn2rrBLmOf4IDFcfTCyObc1U6HcpnoPGSDMtGeki2jGs7GLEnEw5oLM8C6KL84q00JK7AGCFu"
+);
 
 const Purchase = () => {
+  const { id } = useParams();
 
-    const { id } = useParams();
+  const { userInfo } = useAuth();
 
-    const { userInfo } = useAuth();
+  const [product, setProduct] = useState({});
 
-    const [product, setProduct] = useState({});
+  const {
+    register,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const [showCheckoutFormModal, setShowCheckoutFormModal] = useState(false);
 
-    const onSubmit = data => {
-        data.status = 'pending';
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
-        const newOrder = {
-            name: data.username,
-            email: data.email,
-            address: data.address,
-            phone: data.phonenumber,
-            city: data.city,
-            productColor: data.color,
-        }
+  useEffect(() => {
+    const url = `http://localhost:5000/product?id=${id}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setProduct(data));
+  }, []);
 
-        newOrder.productName = product?.productName;
-        newOrder.productPrice = product?.productPrice;
-        newOrder.status = 'pending';
+  console.log(watch("email")); // watch input value by passing the name of it
 
+  return (
+    <>
+      <Header></Header>
+      <Container className="text-center mt-5">
+        <Row>
+          <Col sm={7}>
+            <Image
+              src={product?.productImg}
+              style={{ width: "330px", height: "330px" }}
+              className="text-center"
+              fluid
+            />
+            <h3 className="fw-bolder text-center mt-3">
+              Product Name:&nbsp;{product?.productName}
+            </h3>
+            <p className="text-center mt-3 mb-4">
+              <span className="text-decoration-underline fw-bold">
+                Product Description:
+              </span>
+              &nbsp;{product?.detailDescription}
+            </p>
+            <h5>Product Price: &nbsp;${product?.productPrice}</h5>
+          </Col>
+          <Col sm={5}>
+            <Container className="order-form-container p-3">
+              <form onSubmit={handleSubmit}>
+                <h1>Delivery Order Form</h1>
+                <label htmlFor="username">Your Name</label>
+                <input
+                  defaultValue={userInfo?.displayName}
+                  {...register("username")}
+                />
 
+                <label htmlFor="email">Email</label>
+                <input
+                  defaultValue={userInfo?.email}
+                  type="text"
+                  {...register("email")}
+                />
 
-        const url = 'http://localhost:5000/orders';
+                <label htmlFor="address">Address</label>
+                <input placeholder="address" {...register("address")} />
 
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newOrder),
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
+                <label htmlFor="phonenumber">Phone Number</label>
+                <input placeholder="0168...." {...register("phonenumber")} />
 
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        reset();
+                <label htmlFor="city">City</label>
+                <input placeholder="city" {...register("city")} />
 
+                <label htmlFor="color">Product Color</label>
+                <input placeholder="preferred color" {...register("color")} />
 
-    }
-
-
-    useEffect(() => {
-        const url = `http://localhost:5000/product?id=${id}`
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setProduct(data))
-    }, [])
-
-
-
-    return (
-        <>
-            <Header></Header>
-            <Container className="text-center mt-5">
-                <Row>
-                    <Col sm={7}>
-                        <Image src={product?.productImg} style={{ width: '330px', height: '330px' }} className="text-center" fluid />
-                        <h3 className="fw-bolder text-center mt-3">Product Name:&nbsp;{product?.productName}</h3>
-                        <p className="text-center mt-3 mb-4"><span className="text-decoration-underline fw-bold">Product Description:</span>&nbsp;{product?.detailDescription}</p>
-                        <h5>Product Price: &nbsp;${product?.productPrice}</h5>
-                    </Col>
-                    <Col sm={5}>
-                        <Container className="order-form-container p-3">
-                            <form onSubmit={handleSubmit(onSubmit)}>
-                                <h1>Delivery Order Form</h1>
-                                <label htmlFor="username">Your Name</label>
-                                <input defaultValue={userInfo?.displayName} {...register("username")} />
-
-                                <label htmlFor="email">Email</label>
-                                <input
-                                    defaultValue={userInfo?.email}
-                                    type="text"
-                                    {...register("email")}
-                                />
-
-                                <label htmlFor="address">Address</label>
-                                <input placeholder="address" {...register("address")} />
-
-
-                                <label htmlFor="phonenumber">Phone Number</label>
-                                <input placeholder="+880" {...register("phonenumber")} />
-
-
-                                <label htmlFor="city">City</label>
-                                <input placeholder="city" {...register("city")} />
-
-                                <label htmlFor="color">Product Color</label>
-                                <input placeholder="preferred color" {...register("color")} />
-
-                                <div style={{ color: "red" }}>
-                                    {Object.keys(errors).length > 0 &&
-                                        "There are errors, check your console."}
-                                </div>
-                                <input type="submit" />
-                            </form>
-                        </Container>
-                    </Col>
-                </Row>
+                <div style={{ color: "red" }}>
+                  {Object.keys(errors).length > 0 &&
+                    "There are errors, check your console."}
+                </div>
+                <input
+                  type="submit"
+                  onClick={() => setShowCheckoutFormModal(true)}
+                  value="Proceed to Payment"
+                />
+              </form>
+              {showCheckoutFormModal && (
+                <Elements stripe={stripePromise}>
+                  <CheckoutForm
+                    show={showCheckoutFormModal}
+                    onHide={() => setShowCheckoutFormModal(false)}
+                    userName={watch("username")}
+                    email={watch("email")}
+                    address={watch("address")}
+                    phone={watch("phonenumber")}
+                    city={watch("city")}
+                    color={watch("color")}
+                    productName={product?.productName}
+                    productPrice={product?.productPrice}
+                    reset={reset}
+                  />{" "}
+                </Elements>
+              )}
             </Container>
-            <Footer></Footer>
-        </>
-    );
+          </Col>
+        </Row>
+      </Container>
+      <Footer></Footer>
+    </>
+  );
 };
 
 export default Purchase;
