@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Table, Container, Row, Col } from "react-bootstrap";
 import useAuth from "../../../hooks/useAuth";
 import Spinner from "react-bootstrap/Spinner";
+import { Link } from "react-router-dom";
 
 const MyOrders = () => {
   const { userInfo } = useAuth();
@@ -87,11 +88,22 @@ const MyOrders = () => {
                         <td>{order?.order_status}</td>
                         <td>
                           {" "}
-                          <Button
+                          {/* <Button
                             variant="danger"
                             onClick={() => handleDelete(order?._id)}
                           >
                             Delete
+                          </Button> */}
+                          <Button
+                            variant="danger"
+                            // onClick={() => handleDelete(order?._id)}
+                          >
+                            <Link
+                              to={`/dashboard/invoice/${order?._id}`}
+                              className="text-center text-white fw-bolder "
+                            >
+                              Go to Invoice{" "}
+                            </Link>{" "}
                           </Button>
                         </td>
                       </tr>
