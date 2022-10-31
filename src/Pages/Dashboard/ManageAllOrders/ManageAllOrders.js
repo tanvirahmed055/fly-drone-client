@@ -66,9 +66,6 @@ const ManageAllOrders = () => {
         toast.error("Failed to update status of the order.");
       });
   };
-
-  console.log("orders = ", orders);
-
   return (
     <Container>
       <Row>
