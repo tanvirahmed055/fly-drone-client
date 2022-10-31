@@ -108,7 +108,7 @@ const ManageAllOrders = () => {
                         <td>{order?.order_items?.productColor}</td>
                         <td>{order?.email}</td>
 
-                        <td>{order?.order_items?.status}</td>
+                        <td>{order?.order_status}</td>
                         <td>
                           {" "}
                           <Button
