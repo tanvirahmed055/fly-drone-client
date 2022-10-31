@@ -41,8 +41,6 @@ const Purchase = () => {
       .then((data) => setProduct(data));
   }, []);
 
-  console.log(watch("email")); // watch input value by passing the name of it
-
   return (
     <>
       <Header></Header>

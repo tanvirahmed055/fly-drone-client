@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Login.css";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const {

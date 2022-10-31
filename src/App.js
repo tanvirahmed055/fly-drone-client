@@ -15,10 +15,9 @@ import MakeAdmin from "./Pages/Dashboard/MakeAdmin/MakeAdmin";
 import ManageAllOrders from "./Pages/Dashboard/ManageAllOrders/ManageAllOrders";
 import ManageProducts from "./Pages/Dashboard/ManageProducts/ManageProducts";
 import MyOrders from "./Pages/Dashboard/MyOrders/MyOrders";
-import Pay from "./Pages/Dashboard/Pay/Pay";
 import Review from "./Pages/Dashboard/Review/Review";
 import Invoice from "./Pages/Dashboard/Invoice/Invoice";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -70,8 +69,6 @@ function App() {
               />
               <Route path="myOrders" element={<MyOrders />} />
               <Route path="invoice/:id" element={<Invoice />} />
-
-              {/* <Route path="pay" element={<Pay />} /> */}
               <Route path="review" element={<Review />} />
             </Route>
 

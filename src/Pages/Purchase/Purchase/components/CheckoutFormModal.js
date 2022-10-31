@@ -10,7 +10,6 @@ const CheckoutForm = (props) => {
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
   const [processing, setProcessing] = useState(false);
-  const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
 
   console.log("props", props);
@@ -90,7 +89,6 @@ const CheckoutForm = (props) => {
       setProcessing(false);
     } else {
       setCardError("");
-      setTransactionId(paymentIntent.id);
       console.log(paymentIntent);
       setSuccess("Congrats! Your payment is completed.");
 
@@ -115,7 +113,6 @@ const CheckoutForm = (props) => {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          //   authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
         body: JSON.stringify(orderData),
       })
@@ -171,14 +168,6 @@ const CheckoutForm = (props) => {
               }}
             />
             <div className="d-flex justify-content-center  align-items-center">
-              {/* <button
-                className="btn btn-success btn-lg  mt-5 px-5 py-3"
-                type="submit"
-                disabled={!stripe || !clientSecret || success}
-              >
-                Pay
-              </button> */}
-
               <Button
                 variant="success mt-5"
                 onClick={handleSubmit}
@@ -190,11 +179,6 @@ const CheckoutForm = (props) => {
           </form>
           {cardError && <p className="text-red-500">{cardError}</p>}
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="primary" onClick={props.onHide}>
-            Confirm Order Payment
-          </Button>
-        </Modal.Footer> */}
       </Modal>
     </>
   );
