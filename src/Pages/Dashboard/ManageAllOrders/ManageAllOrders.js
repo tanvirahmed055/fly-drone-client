@@ -17,7 +17,7 @@ const ManageAllOrders = () => {
         //console.log(orders)
         setLoading(false);
       });
-  }, [orders]);
+  }, []);
 
   const handleDelete = (id) => {
     //console.log(id);
@@ -67,6 +67,8 @@ const ManageAllOrders = () => {
       });
   };
 
+  console.log("orders = ", orders);
+
   return (
     <Container>
       <Row>
@@ -101,12 +103,12 @@ const ManageAllOrders = () => {
                     return (
                       <tr key={order?._id}>
                         <td>{index}</td>
-                        <td>{order?.productName}</td>
-                        <td>{order?.productPrice}</td>
-                        <td>{order?.productColor}</td>
+                        <td>{order?.order_items?.productName}</td>
+                        <td>{order?.order_items?.productPrice}</td>
+                        <td>{order?.order_items?.productColor}</td>
                         <td>{order?.email}</td>
 
-                        <td>{order?.status}</td>
+                        <td>{order?.order_items?.status}</td>
                         <td>
                           {" "}
                           <Button
