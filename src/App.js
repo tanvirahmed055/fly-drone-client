@@ -18,11 +18,14 @@ import MyOrders from "./Pages/Dashboard/MyOrders/MyOrders";
 import Pay from "./Pages/Dashboard/Pay/Pay";
 import Review from "./Pages/Dashboard/Review/Review";
 import Invoice from "./Pages/Dashboard/Invoice/Invoice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
+        <ToastContainer position="top-center" autoClose={5000} />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -68,7 +71,7 @@ function App() {
               <Route path="myOrders" element={<MyOrders />} />
               <Route path="invoice/:id" element={<Invoice />} />
 
-              <Route path="pay" element={<Pay />} />
+              {/* <Route path="pay" element={<Pay />} /> */}
               <Route path="review" element={<Review />} />
             </Route>
 

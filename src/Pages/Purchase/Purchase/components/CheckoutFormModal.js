@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { toast } from "react-toastify";
 
 const CheckoutForm = (props) => {
   const stripe = useStripe();
@@ -50,11 +51,6 @@ const CheckoutForm = (props) => {
       console.log("error", error);
     }
   }, [productPrice]);
-
-  console.log(
-    'localStorage.getItem("idToken")',
-    localStorage.getItem("idToken")
-  );
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -129,6 +125,11 @@ const CheckoutForm = (props) => {
           console.log(data);
           reset();
           onHide();
+          toast.success("Order confirmation with payment is successful.");
+        })
+        .catch((error) => {
+          console.log("error", error);
+          toast.error("Failed to make an order.");
         });
     }
   };

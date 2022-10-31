@@ -45,8 +45,6 @@ const MyOrders = () => {
     }
   };
 
-  console.log("orders", orders);
-
   return (
     <Container>
       <Row>
