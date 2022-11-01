@@ -9,7 +9,7 @@ const ManageAllOrders = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const url = `http://localhost:5000/allOrders`;
+    const url = `https://fly-drone-server-ei1d.vercel.app/allOrders`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -27,7 +27,7 @@ const ManageAllOrders = () => {
     );
 
     if (confirmation) {
-      fetch(`http://localhost:5000/deleteOrder/${id}`, {
+      fetch(`https://fly-drone-server-ei1d.vercel.app/deleteOrder/${id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
@@ -43,7 +43,7 @@ const ManageAllOrders = () => {
   };
 
   const handleUpdate = (id) => {
-    const url = "http://localhost:5000/updateStatus";
+    const url = "https://fly-drone-server-ei1d.vercel.app/updateStatus";
 
     const orderInfo = {
       orderId: id,

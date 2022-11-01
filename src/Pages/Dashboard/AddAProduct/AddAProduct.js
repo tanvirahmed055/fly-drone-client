@@ -24,7 +24,7 @@ const AddAProduct = () => {
 
     console.log(newOrder);
 
-    const url = "http://localhost:5000/addProduct";
+    const url = "https://fly-drone-server-ei1d.vercel.app/addProduct";
 
     fetch(url, {
       method: "POST",

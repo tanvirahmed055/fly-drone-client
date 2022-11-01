@@ -23,7 +23,7 @@ const MakeAdmin = () => {
 
     //console.log(inputEmail);
 
-    const url = "http://localhost:5000/makeAdmin";
+    const url = "https://fly-drone-server-ei1d.vercel.app/makeAdmin";
 
     //console.log(localStorage.getItem('idToken'));
     fetch(url, {

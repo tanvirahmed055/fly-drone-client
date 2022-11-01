@@ -9,7 +9,7 @@ const ManageProducts = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const url = `http://localhost:5000/products`;
+    const url = `https://fly-drone-server-ei1d.vercel.app/products`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -26,7 +26,7 @@ const ManageProducts = () => {
     );
 
     if (confirmation) {
-      fetch(`http://localhost:5000/deleteProduct/${id}`, {
+      fetch(`https://fly-drone-server-ei1d.vercel.app/deleteProduct/${id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())

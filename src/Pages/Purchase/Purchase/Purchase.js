@@ -35,7 +35,7 @@ const Purchase = () => {
   };
 
   useEffect(() => {
-    const url = `http://localhost:5000/product?id=${id}`;
+    const url = `https://fly-drone-server-ei1d.vercel.app/product?id=${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProduct(data));

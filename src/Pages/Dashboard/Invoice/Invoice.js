@@ -17,7 +17,7 @@ const Invoice = () => {
   const componentRef = useRef(null);
 
   useEffect(() => {
-    const url = `http://localhost:5000/orders/${id}`;
+    const url = `https://fly-drone-server-ei1d.vercel.app/orders/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

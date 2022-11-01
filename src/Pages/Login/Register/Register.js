@@ -62,7 +62,7 @@ const Register = () => {
   const savedUser = (name, email) => {
     const user = { name, email, role: "user" };
     //console.log(user);
-    const url = "http://localhost:5000/users";
+    const url = "https://fly-drone-server-ei1d.vercel.app/users";
 
     fetch(url, {
       method: "POST",

@@ -49,7 +49,7 @@ const useFirebase = () => {
           //console.log(idToken);
         });
 
-        const url = `http://localhost:5000/user?email=${user?.email}`;
+        const url = `https://fly-drone-server-ei1d.vercel.app/user?email=${user?.email}`;
 
         fetch(url)
           .then((res) => res.json())

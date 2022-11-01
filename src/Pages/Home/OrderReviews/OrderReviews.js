@@ -10,7 +10,7 @@ const OrderReviews = () => {
   useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
-    const url = "http://localhost:5000/reviews";
+    const url = "https://fly-drone-server-ei1d.vercel.app/reviews";
     fetch(url, { signal: signal })
       .then((res) => res.json())
       .then((data) => {

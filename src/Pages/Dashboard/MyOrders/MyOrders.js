@@ -14,7 +14,7 @@ const MyOrders = () => {
   const userEmail = userInfo?.email;
 
   useEffect(() => {
-    const url = `http://localhost:5000/orders?email=${userEmail}`;
+    const url = `https://fly-drone-server-ei1d.vercel.app/orders?email=${userEmail}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -32,7 +32,7 @@ const MyOrders = () => {
   //   );
 
   //   if (confirmation) {
-  //     fetch(`http://localhost:5000/deleteOrder/${id}`, {
+  //     fetch(`https://fly-drone-server-ei1d.vercel.app/deleteOrder/${id}`, {
   //       method: "DELETE",
   //     })
   //       .then((response) => response.json())
