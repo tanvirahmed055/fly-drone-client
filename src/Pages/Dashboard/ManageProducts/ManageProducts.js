@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
 import { Button, Table, Row, Col, Container } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { toast } from "react-toastify";
 
 const ManageProducts = () => {
-  const [products, setProducts] = useState([]);
-
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const url = `https://fly-drone-server-ei1d.vercel.app/products`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-        //console.log(orders)
-        setLoading(false);
-      });
-  }, [products]);
+  const {
+    isLoading,
+    error,
+    data: products,
+  } = useQuery({
+    queryKey: ["manageProducts"],
+    queryFn: () =>
+      fetch("https://fly-drone-server-ei1d.vercel.app/products").then((res) =>
+        res.json()
+      ),
+  });
 
   const handleDelete = (id) => {
     //console.log(id);
@@ -41,56 +39,56 @@ const ManageProducts = () => {
     }
   };
 
+  if (isLoading) return <Spinner animation="grow" />;
+
+  if (error) return toast.error("Failed to load data");
+
   return (
     <Container>
       <Row>
-        {loading ? (
-          <Spinner animation="grow" />
-        ) : (
-          <Col xs={12}>
-            <h1 className="text-center mb-4">My Products</h1>
-            <h4 className="text-center mb-5 text-secondary">
-              See all the available products here
-            </h4>
-            <h2 className="text-center mb-5 ">
-              Number of Products: {products?.length}
-            </h2>
+        <Col xs={12}>
+          <h1 className="text-center mb-4">My Products</h1>
+          <h4 className="text-center mb-5 text-secondary">
+            See all the available products here
+          </h4>
+          <h2 className="text-center mb-5 ">
+            Number of Products: {products?.length}
+          </h2>
 
-            {
-              <Table responsive="sm">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products?.map((product, index) => {
-                    return (
-                      <tr key={product?._id}>
-                        <td>{index}</td>
-                        <td>{product?.productName}</td>
-                        <td>{product?.productPrice}</td>
+          {
+            <Table responsive="sm">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products?.map((product, index) => {
+                  return (
+                    <tr key={product?._id}>
+                      <td>{index}</td>
+                      <td>{product?.productName}</td>
+                      <td>{product?.productPrice}</td>
 
-                        <td>
-                          {" "}
-                          <Button
-                            variant="danger"
-                            onClick={() => handleDelete(product?._id)}
-                          >
-                            Delete
-                          </Button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </Table>
-            }
-          </Col>
-        )}
+                      <td>
+                        {" "}
+                        <Button
+                          variant="danger"
+                          onClick={() => handleDelete(product?._id)}
+                        >
+                          Delete
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          }
+        </Col>
       </Row>
     </Container>
   );

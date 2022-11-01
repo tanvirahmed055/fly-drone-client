@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Image from "react-bootstrap/Image";
@@ -9,6 +9,8 @@ import Footer from "../../Shared/Footer/Footer";
 import CheckoutForm from "./components/CheckoutFormModal";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const stripePromise = loadStripe(
   "pk_test_51JvvPUEz32mQlkG5L683R8ntXgn2rrBLmOf4IDFcfTCyObc1U6HcpnoPGSDMtGeki2jGs7GLEnEw5oLM8C6KL84q00JK7AGCFu"
@@ -18,8 +20,6 @@ const Purchase = () => {
   const { id } = useParams();
 
   const { userInfo } = useAuth();
-
-  const [product, setProduct] = useState({});
 
   const {
     register,
@@ -34,12 +34,22 @@ const Purchase = () => {
     e.preventDefault();
   };
 
-  useEffect(() => {
-    const url = `https://fly-drone-server-ei1d.vercel.app/product?id=${id}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
-  }, []);
+  const {
+    isLoading,
+    error,
+    data: product,
+    refetch,
+  } = useQuery({
+    queryKey: ["products", id],
+    queryFn: () =>
+      fetch(`https://fly-drone-server-ei1d.vercel.app/product?id=${id}`).then(
+        (res) => res.json()
+      ),
+  });
+
+  if (isLoading) return <Spinner animation="grow" />;
+
+  if (error) return toast.error("Failed to load data");
 
   return (
     <>
@@ -117,6 +127,7 @@ const Purchase = () => {
                     productName={product?.productName}
                     productPrice={product?.productPrice}
                     reset={reset}
+                    refetch={refetch}
                   />{" "}
                 </Elements>
               )}

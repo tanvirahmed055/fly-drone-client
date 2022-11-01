@@ -18,16 +18,6 @@ const Register = () => {
   let navigate = useNavigate();
 
   const onSubmit = (data, e) => {
-    //console.log(data);
-
-    // const newUser = {
-    //     name: data?.name,
-    //     email: data?.email,
-    //     password: data?.password
-    // }
-
-    //console.log(newUser);
-
     handleRegistration(data.name, data.email, data.password)
       .then((result) => {
         // Signed in

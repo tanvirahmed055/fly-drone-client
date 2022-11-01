@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { Row } from "react-bootstrap";
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import { Row, Spinner } from "react-bootstrap";
+import { toast } from "react-toastify";
 import OrderReview from "../OrderReview/OrderReview";
 import "./OrderReviews.css";
 
 const OrderReviews = () => {
-  const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    isLoading,
+    error,
+    data: reviews,
+  } = useQuery({
+    queryKey: ["orderReviews"],
+    queryFn: () =>
+      fetch("https://fly-drone-server-ei1d.vercel.app/reviews").then((res) =>
+        res.json()
+      ),
+  });
 
-  useEffect(() => {
-    const abortController = new AbortController();
-    const signal = abortController.signal;
-    const url = "https://fly-drone-server-ei1d.vercel.app/reviews";
-    fetch(url, { signal: signal })
-      .then((res) => res.json())
-      .then((data) => {
-        setReviews(data);
-        setLoading(false);
-      });
-    return function cleanup() {
-      abortController.abort();
-    };
-  }, []);
+  if (isLoading) return <Spinner animation="grow" />;
+
+  if (error) return toast.error("Failed to load data");
 
   return (
     <div className="container mt-5 mb-5" id="reviews">

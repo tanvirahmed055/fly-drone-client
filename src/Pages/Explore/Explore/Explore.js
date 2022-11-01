@@ -1,25 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import Header from "../../Shared/Header/Header";
 import Footer from "../../Shared/Footer/Footer";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const Explore = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-
   let navigate = useNavigate();
+  const {
+    isLoading,
+    error,
+    data: products,
+  } = useQuery({
+    queryKey: ["explore"],
+    queryFn: () =>
+      fetch("https://fly-drone-server-ei1d.vercel.app/products").then((res) =>
+        res.json()
+      ),
+  });
 
-  useEffect(() => {
-    const url = "https://fly-drone-server-ei1d.vercel.app/products";
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
-        setLoading(false);
-      });
-  }, [products]);
+  if (isLoading) return <Spinner animation="grow" />;
+
+  if (error) return toast.error("Failed to load data");
+
   return (
     <>
       <Header></Header>
@@ -31,51 +36,45 @@ const Explore = () => {
           See Our Diverse and Unique Drones
         </h4>
         <Row xs={1} md={3} className="g-2">
-          {loading ? (
-            <Spinner animation="grow" className="mx-auto" />
-          ) : (
-            products?.map((product) => (
-              <Col key={product?._id}>
-                <Card className="text-center h-100">
-                  <Card.Img
-                    variant="top"
-                    src={product?.productImg}
-                    style={{ height: "300px" }}
-                  />
-                  <Card.Body>
-                    <Card.Title className="fw-bolder text-start">
-                      {product?.productName}
-                    </Card.Title>
-                    <Card.Text className="text-start">
-                      {product?.shortDescription}
-                    </Card.Text>
+          {products?.map((product) => (
+            <Col key={product?._id}>
+              <Card className="text-center h-100">
+                <Card.Img
+                  variant="top"
+                  src={product?.productImg}
+                  style={{ height: "300px" }}
+                />
+                <Card.Body>
+                  <Card.Title className="fw-bolder text-start">
+                    {product?.productName}
+                  </Card.Title>
+                  <Card.Text className="text-start">
+                    {product?.shortDescription}
+                  </Card.Text>
 
-                    <Card.Footer>
-                      <Row className="d-flex justify-content-between align-items-center">
-                        <Col sm={7}>
-                          <Card.Title className="text-start fw-bold">
-                            ${product?.productPrice}
-                          </Card.Title>
-                        </Col>
-                        <Col sm={5}>
-                          <Button
-                            variant="warning"
-                            size="lg"
-                            className="fw-bolder"
-                            onClick={() =>
-                              navigate(`/purchase/${product?._id}`)
-                            }
-                          >
-                            Purchase
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Card.Footer>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))
-          )}
+                  <Card.Footer>
+                    <Row className="d-flex justify-content-between align-items-center">
+                      <Col sm={7}>
+                        <Card.Title className="text-start fw-bold">
+                          ${product?.productPrice}
+                        </Card.Title>
+                      </Col>
+                      <Col sm={5}>
+                        <Button
+                          variant="warning"
+                          size="lg"
+                          className="fw-bolder"
+                          onClick={() => navigate(`/purchase/${product?._id}`)}
+                        >
+                          Purchase
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Card.Footer>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
         </Row>
       </Container>
       <Footer></Footer>

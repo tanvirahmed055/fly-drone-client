@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button, Table, Row, Col, Container } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
 
 const ManageAllOrders = () => {
-  const [orders, setOrders] = useState([]);
-
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const url = `https://fly-drone-server-ei1d.vercel.app/allOrders`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setOrders(data);
-        //console.log(orders)
-        setLoading(false);
-      });
-  }, []);
+  const {
+    isLoading,
+    error,
+    data: orders,
+  } = useQuery({
+    queryKey: ["manageAllOrders"],
+    queryFn: () =>
+      fetch("https://fly-drone-server-ei1d.vercel.app/allOrders").then((res) =>
+        res.json()
+      ),
+  });
 
   const handleDelete = (id) => {
     //console.log(id);
@@ -66,72 +64,73 @@ const ManageAllOrders = () => {
         toast.error("Failed to update status of the order.");
       });
   };
+
+  if (isLoading) return <Spinner animation="grow" />;
+
+  if (error) return toast.error("Failed to load data");
+
   return (
     <Container>
       <Row>
-        {loading ? (
-          <Spinner animation="grow" />
-        ) : (
-          <Col xs={12}>
-            <h1 className="text-center mb-4">All Orders</h1>
-            <h4 className="text-center mb-5 text-secondary">
-              See all orders here
-            </h4>
-            <h2 className="text-center mb-5 ">
-              Number of Orders: {orders?.length}
-            </h2>
+        <Col xs={12}>
+          <h1 className="text-center mb-4">All Orders</h1>
+          <h4 className="text-center mb-5 text-secondary">
+            See all orders here
+          </h4>
+          <h2 className="text-center mb-5 ">
+            Number of Orders: {orders?.length}
+          </h2>
 
-            {
-              <Table responsive="sm">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Color</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                    <th>Delete</th>
-                    <th>Update</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orders?.map((order, index) => {
-                    return (
-                      <tr key={order?._id}>
-                        <td>{index}</td>
-                        <td>{order?.order_items?.productName}</td>
-                        <td>{order?.order_items?.productPrice}</td>
-                        <td>{order?.order_items?.productColor}</td>
-                        <td>{order?.email}</td>
+          {
+            <Table responsive="sm">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Color</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Delete</th>
+                  <th>Update</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders?.map((order, index) => {
+                  return (
+                    <tr key={order?._id}>
+                      <td>{index}</td>
+                      <td>{order?.order_items?.productName}</td>
+                      <td>{order?.order_items?.productPrice}</td>
+                      <td>{order?.order_items?.productColor}</td>
+                      <td>{order?.email}</td>
 
-                        <td>{order?.order_status}</td>
-                        <td>
-                          {" "}
-                          <Button
-                            variant="danger"
-                            onClick={() => handleDelete(order?._id)}
-                          >
-                            Delete
-                          </Button>
-                        </td>
+                      <td>{order?.order_status}</td>
+                      <td>
+                        {" "}
+                        <Button
+                          variant="danger"
+                          onClick={() => handleDelete(order?._id)}
+                        >
+                          Delete
+                        </Button>
+                      </td>
 
-                        <td>
-                          <Button
-                            variant="success"
-                            onClick={() => handleUpdate(order?._id)}
-                          >
-                            Update
-                          </Button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </Table>
-            }
-          </Col>
-        )}
+                      <td>
+                        <Button
+                          variant="success"
+                          onClick={() => handleUpdate(order?._id)}
+                        >
+                          Update
+                        </Button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          }
+        </Col>
       </Row>
     </Container>
   );

@@ -26,6 +26,7 @@ const CheckoutForm = (props) => {
     show,
     onHide,
     reset,
+    refetch,
   } = props;
 
   useEffect(() => {
@@ -124,6 +125,7 @@ const CheckoutForm = (props) => {
           reset();
           onHide();
           toast.success("Order confirmation with payment is successful.");
+          refetch();
         })
         .catch((error) => {
           console.log("error", error);

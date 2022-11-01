@@ -1,34 +1,38 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useRef, useCallback } from "react";
 import { Button, Table, Row, Col, Container } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import ReactToPrint from "react-to-print";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const Invoice = () => {
-  const [invoiceData, setInvoiceData] = useState([]);
-
-  const [loading, setLoading] = useState(true);
-
   const { id } = useParams();
 
   const { userInfo } = useAuth();
 
   const componentRef = useRef(null);
 
-  useEffect(() => {
-    const url = `https://fly-drone-server-ei1d.vercel.app/orders/${id}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setInvoiceData(data);
-        setLoading(false);
-      });
-  }, [id]);
+  const {
+    isLoading,
+    error,
+    data: invoiceData,
+  } = useQuery({
+    queryKey: ["invoice", id],
+    queryFn: () =>
+      fetch(`https://fly-drone-server-ei1d.vercel.app/orders/${id}`).then(
+        (res) => res.json()
+      ),
+  });
 
   const reactToPrintContent = useCallback(() => {
     return componentRef.current;
   }, []);
+
+  if (isLoading) return <Spinner animation="grow" />;
+
+  if (error) return toast.error("Failed to load data");
 
   return (
     <Container>
