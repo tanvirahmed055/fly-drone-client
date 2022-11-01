@@ -12,9 +12,7 @@ const ManageProducts = () => {
   } = useQuery({
     queryKey: ["manageProducts"],
     queryFn: () =>
-      fetch("https://fly-drone-server-ei1d.vercel.app/products").then((res) =>
-        res.json()
-      ),
+      fetch("http://localhost:5000/products").then((res) => res.json()),
   });
 
   const handleDelete = (id) => {
@@ -24,7 +22,7 @@ const ManageProducts = () => {
     );
 
     if (confirmation) {
-      fetch(`https://fly-drone-server-ei1d.vercel.app/deleteProduct/${id}`, {
+      fetch(`http://localhost:5000/deleteProduct/${id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())

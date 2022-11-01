@@ -9,12 +9,11 @@ const ManageAllOrders = () => {
     isLoading,
     error,
     data: orders,
+    refetch,
   } = useQuery({
     queryKey: ["manageAllOrders"],
     queryFn: () =>
-      fetch("https://fly-drone-server-ei1d.vercel.app/allOrders").then((res) =>
-        res.json()
-      ),
+      fetch("http://localhost:5000/allOrders").then((res) => res.json()),
   });
 
   const handleDelete = (id) => {
@@ -25,13 +24,14 @@ const ManageAllOrders = () => {
     );
 
     if (confirmation) {
-      fetch(`https://fly-drone-server-ei1d.vercel.app/deleteOrder/${id}`, {
+      fetch(`http://localhost:5000/deleteOrder/${id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
         .then((data) => {
           //console.log('Success:', data);
           toast.success("Successfully deleted order.");
+          refetch();
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -41,7 +41,7 @@ const ManageAllOrders = () => {
   };
 
   const handleUpdate = (id) => {
-    const url = "https://fly-drone-server-ei1d.vercel.app/updateStatus";
+    const url = "http://localhost:5000/updateStatus";
 
     const orderInfo = {
       orderId: id,
@@ -58,6 +58,7 @@ const ManageAllOrders = () => {
       .then((data) => {
         console.log("Success:", data);
         toast.success("Order status update is successful.");
+        refetch();
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -120,6 +121,7 @@ const ManageAllOrders = () => {
                         <Button
                           variant="success"
                           onClick={() => handleUpdate(order?._id)}
+                          disabled={order?.order_status === "shipped"}
                         >
                           Update
                         </Button>

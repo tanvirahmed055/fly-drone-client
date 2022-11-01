@@ -31,8 +31,7 @@ const CheckoutForm = (props) => {
 
   useEffect(() => {
     try {
-      const url =
-        "https://fly-drone-server-ei1d.vercel.app/create-payment-intent";
+      const url = "http://localhost:5000/create-payment-intent";
 
       fetch(url, {
         method: "POST",
@@ -111,7 +110,7 @@ const CheckoutForm = (props) => {
         transactionId: paymentIntent.id,
       };
 
-      fetch("https://fly-drone-server-ei1d.vercel.app/orders", {
+      fetch("http://localhost:5000/orders", {
         method: "POST",
         headers: {
           "content-type": "application/json",

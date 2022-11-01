@@ -24,7 +24,7 @@ const Review = () => {
 
     //console.log(newReview);
 
-    const url = "https://fly-drone-server-ei1d.vercel.app/addReview";
+    const url = "http://localhost:5000/addReview";
 
     fetch(url, {
       method: "POST",

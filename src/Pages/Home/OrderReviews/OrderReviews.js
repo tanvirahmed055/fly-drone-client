@@ -13,9 +13,7 @@ const OrderReviews = () => {
   } = useQuery({
     queryKey: ["orderReviews"],
     queryFn: () =>
-      fetch("https://fly-drone-server-ei1d.vercel.app/reviews").then((res) =>
-        res.json()
-      ),
+      fetch("http://localhost:5000/reviews").then((res) => res.json()),
   });
 
   if (isLoading) return <Spinner animation="grow" />;

@@ -21,9 +21,7 @@ const Invoice = () => {
   } = useQuery({
     queryKey: ["invoice", id],
     queryFn: () =>
-      fetch(`https://fly-drone-server-ei1d.vercel.app/orders/${id}`).then(
-        (res) => res.json()
-      ),
+      fetch(`http://localhost:5000/orders/${id}`).then((res) => res.json()),
   });
 
   const reactToPrintContent = useCallback(() => {

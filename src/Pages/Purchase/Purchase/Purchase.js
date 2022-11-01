@@ -42,9 +42,7 @@ const Purchase = () => {
   } = useQuery({
     queryKey: ["products", id],
     queryFn: () =>
-      fetch(`https://fly-drone-server-ei1d.vercel.app/product?id=${id}`).then(
-        (res) => res.json()
-      ),
+      fetch(`http://localhost:5000/product?id=${id}`).then((res) => res.json()),
   });
 
   if (isLoading) return <Spinner animation="grow" />;
