@@ -27,7 +27,6 @@ const CheckoutForm = (props) => {
     show,
     onHide,
     reset,
-    refetch,
   } = props;
 
   useEffect(() => {
@@ -74,6 +73,9 @@ const CheckoutForm = (props) => {
     setCardError(error?.message || "");
     setSuccess("");
     setProcessing(true);
+
+    const id = toast.loading("Please wait...");
+
     // confirm card payment
     const { paymentIntent, error: intentError } =
       await stripe.confirmCardPayment(clientSecret, {
@@ -124,12 +126,23 @@ const CheckoutForm = (props) => {
           console.log(data);
           reset();
           onHide();
-          toast.success("Order confirmation with payment is successful.");
+          // toast.success("Order confirmation with payment is successful.");
+          toast.update(id, {
+            render: "Order confirmation with payment is successful.",
+            type: "success",
+            isLoading: false,
+          });
+
           navigate("/dashboard/myOrders");
         })
         .catch((error) => {
           console.log("error", error);
-          toast.error("Failed to make an order.");
+          // toast.error("Failed to make an order.");
+          toast.update(id, {
+            render: "Failed to make an order.",
+            type: "error",
+            isLoading: false,
+          });
         });
     }
   };
