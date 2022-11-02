@@ -172,11 +172,12 @@ const CheckoutForm = (props) => {
             />
             <div className="d-flex justify-content-center  align-items-center">
               <Button
-                variant="success mt-5"
+                disabled={processing}
                 onClick={handleSubmit}
+                variant="success mt-5"
                 // disabled={!stripe || !clientSecret}
               >
-                Confirm Order Payment
+                {processing ? "Loading…" : "Confirm Order Payment"}
               </Button>
             </div>
           </form>
