@@ -3,6 +3,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = (props) => {
   const stripe = useStripe();
@@ -12,7 +13,7 @@ const CheckoutForm = (props) => {
   const [processing, setProcessing] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
 
-  console.log("props", props);
+  let navigate = useNavigate();
 
   const {
     userName,
@@ -124,7 +125,7 @@ const CheckoutForm = (props) => {
           reset();
           onHide();
           toast.success("Order confirmation with payment is successful.");
-          refetch();
+          navigate("/dashboard/myOrders");
         })
         .catch((error) => {
           console.log("error", error);

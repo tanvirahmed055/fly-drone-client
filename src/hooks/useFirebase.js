@@ -37,7 +37,6 @@ const useFirebase = () => {
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
       if (user) {
-        //console.log(user?.email);
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         setUserInfo(user);
@@ -51,14 +50,16 @@ const useFirebase = () => {
 
         const url = `http://localhost:5000/user?email=${user?.email}`;
 
-        fetch(url)
-          .then((res) => res.json())
-          .then((data) => {
-            setRole(data?.role);
-            //console.log('checking role', data?.role);
-            //console.log('printing role', role);
-            setUserLoading(false);
-          });
+        try {
+          fetch(url)
+            .then((res) => res.json())
+            .then((data) => {
+              setRole(data?.role);
+              setUserLoading(false);
+            });
+        } catch (e) {
+          console.log(e);
+        }
       } else {
         // User is signed out
         // ...

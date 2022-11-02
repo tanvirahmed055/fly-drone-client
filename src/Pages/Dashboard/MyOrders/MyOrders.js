@@ -16,11 +16,11 @@ const MyOrders = () => {
     error,
     data: orders,
   } = useQuery({
-    queryKey: ["myOrders", userEmail],
+    queryKey: ["myOrders", userInfo],
     queryFn: () =>
-      fetch(`http://localhost:5000/orders/${userEmail}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://fly-drone-server-ei1d.vercel.app/orders?email=${userEmail}`
+      ).then((res) => res.json()),
   });
 
   if (isLoading) return <Spinner animation="grow" />;
