@@ -26,7 +26,7 @@ const Register = () => {
     if (userAuthData) {
       try {
         const responseData = await storeUser(
-          userAuthData.user.displayName,
+          data.name,
           userAuthData.user.email
         );
         console.log("responseData", responseData);

@@ -34,12 +34,8 @@ const useFirebase = () => {
     return createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         // Signed in
-        console.log("result", result);
-
-        const fullName = result.user.displayName || "";
-        const email = result.user.email;
         updateProfile(auth.currentUser, {
-          displayName: fullName,
+          displayName: name,
         })
           .then((res) => {
             // Profile updated!
