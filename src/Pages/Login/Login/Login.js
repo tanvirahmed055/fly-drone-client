@@ -14,7 +14,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const { handleLogin } = useAuth();
+  const { handleLogin, handleGoogleSignIn } = useAuth();
 
   let navigate = useNavigate();
   let location = useLocation();
@@ -42,6 +42,65 @@ const Login = () => {
     reset();
   };
 
+  const handleGoogleLoginIn = async () => {
+    const userAuthData = await handleGoogleSignIn();
+
+    console.log(userAuthData);
+
+    if (userAuthData) {
+      try {
+        const responseData = await storeUser(
+          userAuthData.user.displayName,
+          userAuthData.user.email
+        );
+        if (responseData) {
+          reset();
+          navigate("/");
+          toast.success("Google Sign in is successful.");
+        }
+        console.log("responseData", responseData);
+      } catch (e) {
+        toast.error("Failed to sign in with Google.");
+      }
+    }
+  };
+
+  const storeUser = async (name, email) => {
+    const user = { name, email, role: "user" };
+    //console.log(user);
+    const url = `http://localhost:5000/users/${email}`;
+
+    //  const email = user?.user?.email;
+    //   const currentUser = {email: email};
+    //   if(email){
+    //       fetch(`https://secret-dusk-46242.herokuapp.com/user/${email}`, {
+    //           method:'PUT',
+    //           headers: {
+    //               'content-type': 'application/json'
+    //           },
+    //           body:JSON.stringify(currentUser)
+    //       })
+
+    return fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        if (data.acknowledged) {
+          return data;
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        return error;
+      });
+  };
+
   return (
     <Container fluid>
       <Row>
@@ -64,6 +123,14 @@ const Login = () => {
                   "There are errors, check your console."}
               </div>
               <input type="submit" />
+              <input
+                type="button"
+                onClick={() => {
+                  handleGoogleLoginIn();
+                }}
+                value="Sign in with Google"
+                className="bg-primary text-white mt-4 p-3 fw-bold border border-0"
+              />
             </form>
           </Container>
         </Col>

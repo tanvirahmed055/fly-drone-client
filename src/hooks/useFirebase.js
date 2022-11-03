@@ -8,6 +8,8 @@ import {
   signOut,
   updateProfile,
   getIdToken,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { toast } from "react-toastify";
 
@@ -24,10 +26,38 @@ const useFirebase = () => {
 
   //const [token, setToken] = useState('');
 
+  const googleProvider = new GoogleAuthProvider();
+
   const auth = getAuth();
 
-  const handleRegistration = (name, email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+  const handleRegistration = async (name, email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        // Signed in
+        console.log("result", result);
+
+        const fullName = result.user.displayName || "";
+        const email = result.user.email;
+        updateProfile(auth.currentUser, {
+          displayName: fullName,
+        })
+          .then((res) => {
+            // Profile updated!
+            // ...
+          })
+          .catch((error) => {
+            // An error occurred
+            // ...
+          });
+        return result;
+      })
+      .catch((error) => {
+        // An error occurred
+        // ...
+        // return error;
+        toast.error(error?.message || "Failed to sign up");
+        console.log(typeof error);
+      });
   };
 
   const handleLogin = (email, password) => {
@@ -72,6 +102,57 @@ const useFirebase = () => {
     return () => unsubscribed;
   }, []);
 
+  const handleGoogleSignIn = async () => {
+    return signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        // Signed in
+        console.log("result", result);
+
+        const fullName = result.user.displayName || "";
+        const email = result.user.email;
+        updateProfile(auth.currentUser, {
+          displayName: fullName,
+        })
+          .then((res) => {
+            // Profile updated!
+            // ...
+          })
+          .catch((error) => {
+            // An error occurred
+            // ...
+          });
+        return result;
+        // storeUser(fullName, email).then((res) => {
+        //   // reset();
+        //   // navigate("/");
+        //   // toast.success("User sign up is successful.");
+        //   console.log("store user responsed", res);
+        //   return res;
+        // });
+
+        // const userresponse = await storeUser(fullName, email);
+        // console.log(userresponse, "userresponse");
+      })
+      .catch((error) => {
+        // An error occurred
+        // ...
+        // return error;
+      });
+
+    // storeUser(data.name, data.email)
+    //   reset();
+    //   navigate("/");
+    //   toast.success("User sign up is successful.");
+    // })
+    // .catch((error) => {
+    //   const errorCode = error.code;
+    //   const errorMessage = error.message;
+    //   // ..
+    //   console.log(errorCode, errorMessage);
+    //   toast.success("Failed to sign up.");
+    // });
+  };
+
   const handleLogOut = () => {
     signOut(auth)
       .then(() => {
@@ -89,6 +170,7 @@ const useFirebase = () => {
   return {
     handleRegistration,
     handleLogin,
+    handleGoogleSignIn,
     userInfo,
     setUserInfo,
     handleLogOut,
