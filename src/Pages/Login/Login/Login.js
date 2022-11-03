@@ -45,8 +45,6 @@ const Login = () => {
   const handleGoogleLoginIn = async () => {
     const userAuthData = await handleGoogleSignIn();
 
-    console.log(userAuthData);
-
     if (userAuthData) {
       try {
         const responseData = await storeUser(
@@ -69,18 +67,6 @@ const Login = () => {
     const user = { name, email, role: "user" };
     //console.log(user);
     const url = `http://localhost:5000/users/${email}`;
-
-    //  const email = user?.user?.email;
-    //   const currentUser = {email: email};
-    //   if(email){
-    //       fetch(`https://secret-dusk-46242.herokuapp.com/user/${email}`, {
-    //           method:'PUT',
-    //           headers: {
-    //               'content-type': 'application/json'
-    //           },
-    //           body:JSON.stringify(currentUser)
-    //       })
-
     return fetch(url, {
       method: "PUT",
       headers: {
