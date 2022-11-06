@@ -11,6 +11,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import Cart from "../../Cart/Cart";
 
 const stripePromise = loadStripe(
   "pk_test_51JvvPUEz32mQlkG5L683R8ntXgn2rrBLmOf4IDFcfTCyObc1U6HcpnoPGSDMtGeki2jGs7GLEnEw5oLM8C6KL84q00JK7AGCFu"
@@ -52,10 +53,14 @@ const Purchase = () => {
   return (
     <>
       <Header></Header>
-      <Container className="text-center mt-5">
+      <Container
+        fluid
+        className="text-center mt-5 pt-5"
+        style={{ backgroundColor: "gainsboro" }}
+      >
         <Row>
-          <Col sm={7}>
-            <Image
+          <Col sm={9}>
+            {/* <Image
               src={product?.productImg}
               style={{ width: "330px", height: "330px" }}
               className="text-center"
@@ -70,9 +75,10 @@ const Purchase = () => {
               </span>
               &nbsp;{product?.detailDescription}
             </p>
-            <h5>Product Price: &nbsp;${product?.productPrice}</h5>
+            <h5>Product Price: &nbsp;${product?.productPrice}</h5> */}
+            <Cart />
           </Col>
-          <Col sm={5}>
+          <Col sm={3}>
             <Container className="order-form-container p-3">
               <form onSubmit={handleSubmit}>
                 <h1>Delivery Order Form</h1>

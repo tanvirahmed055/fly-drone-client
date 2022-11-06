@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Nav, Navbar, Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import useAuth from "../../../hooks/useAuth";
@@ -8,6 +9,16 @@ import "./Header.css";
 const Header = () => {
   const { userInfo, handleLogOut } = useAuth();
 
+  const cart = useSelector((state) => state.cart);
+
+  const getTotalQuantity = () => {
+    let total = 0;
+    cart.forEach((item) => {
+      total += item.quantity;
+    });
+    return total;
+  };
+
   return (
     <Navbar
       collapseOnSelect
@@ -15,6 +26,7 @@ const Header = () => {
       bg="dark"
       variant="dark"
       className="p-3"
+      fixed="top"
     >
       <Container>
         <Link to="/">
@@ -71,6 +83,54 @@ const Header = () => {
                 </Button>
               </Link>
             )}
+
+            {/* {userInfo?.email &&
+             <Link to="/">
+               <Button
+                 variant="warning"
+                 className="me-3 mb-1"
+                 onClick={() => handleLogOut()}
+               >
+                 Cart
+               </Button>
+             </Link>} */}
+
+            {/* {
+             <Link to="/cart">
+               <Button
+                 variant="btn btn-light"
+                 className="me-3 mb-1 rounded-circle"
+                 style={{position: 'relative'}}    
+               >
+                 <i class="fas fa-cart-arrow-down"></i>
+                 <span style={{position: 'absolute', bottom: '25px', color: 'white', right: '-5px'}}>5</span>
+ 
+               </Button>
+             </Link>} */}
+
+            {
+              <Link to="/cart">
+                <Button
+                  variant="btn btn-light"
+                  className="me-3 mb-1 rounded-circle btn-lg"
+                  style={{ position: "relative" }}
+                >
+                  <i class="fas fa-cart-arrow-down"></i>
+                  <Button
+                    variant="btn btn-danger"
+                    className=" rounded-circle btn-sm"
+                    style={{
+                      position: "absolute",
+                      bottom: "25px",
+                      color: "white",
+                      right: "-10px",
+                    }}
+                  >
+                    {getTotalQuantity() || 0}
+                  </Button>
+                </Button>
+              </Link>
+            }
           </Nav>
         </Navbar.Collapse>
       </Container>

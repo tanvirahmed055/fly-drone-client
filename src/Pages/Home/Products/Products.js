@@ -27,7 +27,7 @@ const Products = () => {
         See Our Diverse and Unique Drones
       </h4>
 
-      <Row xs={1} md={3} className="g-2">
+      <Row xs={1} md={2} className="g-1">
         {products?.slice(0, 6)?.map((product) => (
           <Product key={product._id} product={product}></Product>
         ))}

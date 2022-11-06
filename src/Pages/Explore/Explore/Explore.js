@@ -6,9 +6,14 @@ import Footer from "../../Shared/Footer/Footer";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../redux/cartSlice";
 
 const Explore = () => {
   let navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
   const {
     isLoading,
     error,
@@ -26,7 +31,7 @@ const Explore = () => {
   return (
     <>
       <Header></Header>
-      <Container fluid>
+      <Container fluid className="mt-5 pt-4">
         <h1 className="text-center fw-bold mb-4 fst-italic mt-5">
           Our Products
         </h1>
@@ -49,24 +54,41 @@ const Explore = () => {
                   <Card.Text className="text-start">
                     {product?.shortDescription}
                   </Card.Text>
-
                   <Card.Footer>
-                    <Row className="d-flex justify-content-between align-items-center">
-                      <Col sm={7}>
-                        <Card.Title className="text-start fw-bold">
+                    <Row className="d-flex justify-content-between align-items-center pt-2">
+                      <Col sm={4}>
+                        <Card.Title className="text-start fw-bold fs-3">
                           ${product?.productPrice}
                         </Card.Title>
                       </Col>
-                      <Col sm={5}>
+                      <Col sm={8}>
                         <Button
-                          variant="warning"
+                          variant="primary"
                           size="lg"
-                          className="fw-bolder"
+                          className="fw-bolder fs-5"
                           onClick={() => navigate(`/purchase/${product?._id}`)}
                         >
                           Purchase
                         </Button>
+                        <Button
+                          variant="danger"
+                          size="lg"
+                          className="fw-bolder fs-5 ms-2"
+                          onClick={() =>
+                            dispatch(
+                              addToCart(
+                                product?._id,
+                                product?.productName,
+                                product?.productImg,
+                                product?.productPrice
+                              )
+                            )
+                          }
+                        >
+                          Add to Cart
+                        </Button>
                       </Col>
+                      {/* <Col sm={6}></Col> */}
                     </Row>
                   </Card.Footer>
                 </Card.Body>
