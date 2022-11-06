@@ -32,6 +32,8 @@ const Invoice = () => {
 
   if (error) return toast.error("Failed to load data");
 
+  console.log("invoice data =", invoiceData);
+
   return (
     <Container>
       <div className="mt-5 mb-5">
@@ -113,7 +115,7 @@ const Invoice = () => {
                   </h4>
                   <h4 className="fw-light text-end">
                     Paid Amount:
-                    <span> {invoiceData?.order_items?.productPrice} BDT</span>
+                    <span> {invoiceData?.total_amount} USD</span>
                   </h4>
                 </div>
               </div>
@@ -128,18 +130,20 @@ const Invoice = () => {
               <thead>
                 <tr>
                   <th>Product Name</th>
-                  <th>Color</th>
                   <th>Price</th>
+                  <th>Quantity</th>
                   <th>Subtotal</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{invoiceData?.order_items?.productName}</td>
-                  <td>{invoiceData?.order_items?.productColor}</td>
-                  <td>{invoiceData?.order_items?.productPrice}</td>
-                  <td>{invoiceData?.order_items?.productPrice}</td>
-                </tr>
+                {invoiceData?.order_items?.map((item) => (
+                  <tr>
+                    <td>{item?.productName}</td>
+                    <td>{item?.productPrice}</td>
+                    <td>{item?.quantity}</td>
+                    <td>{item?.productPrice * item?.quantity}</td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </Col>
@@ -161,7 +165,7 @@ const Invoice = () => {
                   <td style={{ padding: 5 }}>Total Amount: </td>
                   <td style={{ padding: 5 }}>
                     {" "}
-                    {invoiceData?.order_items?.productPrice} BDT
+                    {invoiceData?.total_amount} USD
                   </td>
                 </tr>
               </tbody>
@@ -175,13 +179,13 @@ const Invoice = () => {
                 <tr align="right">
                   <td style={{ padding: 5 }}>Net payable: </td>
                   <td style={{ padding: 5 }}>
-                    {invoiceData?.order_items?.productPrice} BDT
+                    {invoiceData?.total_amount} USD
                   </td>
                 </tr>
                 <tr align="right">
                   <td style={{ padding: 5 }}>Payment: </td>
                   <td style={{ padding: 5 }}>
-                    {invoiceData?.order_items?.productPrice} BDT
+                    {invoiceData?.total_amount} USD
                   </td>
                 </tr>
               </tbody>
