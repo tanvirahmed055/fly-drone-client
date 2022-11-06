@@ -87,13 +87,13 @@ const ManageAllOrders = () => {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Product Name</th>
-                  <th>Price</th>
-                  <th>Color</th>
-                  <th>Email</th>
+                  <th>Order Id</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Total Amount</th>
+                  <th>Paid Amount</th>
                   <th>Status</th>
-                  <th>Delete</th>
-                  <th>Update</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -101,23 +101,21 @@ const ManageAllOrders = () => {
                   return (
                     <tr key={order?._id}>
                       <td>{index}</td>
-                      <td>{order?.order_items?.productName}</td>
-                      <td>{order?.order_items?.productPrice}</td>
-                      <td>{order?.order_items?.productColor}</td>
-                      <td>{order?.email}</td>
-
+                      <td>{order?._id}</td>
+                      <td>{order?.name}</td>
+                      <td>{order?.phone}</td>
+                      <td>{order?.total_amount}</td>
+                      <td>{order?.total_amount}</td>
                       <td>{order?.order_status}</td>
                       <td>
                         {" "}
                         <Button
                           variant="danger"
                           onClick={() => handleDelete(order?._id)}
+                          className="me-2"
                         >
                           Delete
                         </Button>
-                      </td>
-
-                      <td>
                         <Button
                           variant="success"
                           onClick={() => handleUpdate(order?._id)}
