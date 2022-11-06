@@ -1,18 +1,15 @@
-// import "./Cart.css";
-// import Total from "../components/Total";
-// import CartItem from "../components/CartItem";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import CartItem from "./components/CartItem";
 import Total from "./components/Total";
 
-function Cart() {
+const Cart = () => {
   const cart = useSelector((state) => state.cart);
 
   return (
     <Container fluid className="bg-light">
-      <div className="cart">
-        <div className="cart__left">
+      <div className="d-flex">
+        <div className="">
           <div>
             <h3 className="text-start pt-3">Shopping Cart</h3>
             <hr></hr>
@@ -29,12 +26,12 @@ function Cart() {
           </div>
         </div>
 
-        <div className="cart__right">
+        <div className="pt-5">
           <Total />
         </div>
       </div>
     </Container>
   );
-}
+};
 
 export default Cart;

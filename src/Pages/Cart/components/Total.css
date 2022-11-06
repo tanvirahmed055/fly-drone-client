@@ -1,0 +1,26 @@
+.total {
+  width: 270px;
+  height: 110px;
+  padding: 20px;
+  margin-left: 15px;
+  background: white;
+  border-radius: 13px;
+  min-width: 350px;
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+@media (max-width: 800px) {
+  .total {
+    width: unset;
+    text-align: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .total {
+    min-width: unset;
+  }
+}

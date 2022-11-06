@@ -1,7 +1,7 @@
 import "./Total.css";
 import { useSelector } from "react-redux";
 
-function Total() {
+const Total = () => {
   const cart = useSelector((state) => state.cart);
 
   const getTotal = () => {
@@ -25,6 +25,6 @@ function Total() {
       </div>
     </div>
   );
-}
+};
 
 export default Total;
