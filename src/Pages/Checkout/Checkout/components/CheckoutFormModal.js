@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CheckoutForm = (props) => {
   const stripe = useStripe();
@@ -29,6 +30,18 @@ const CheckoutForm = (props) => {
     reset,
   } = props;
 
+  const cart = useSelector((state) => state.cart);
+
+  const getTotal = () => {
+    let totalQuantity = 0;
+    let totalPrice = 0;
+    cart.forEach((item) => {
+      totalQuantity += item.quantity;
+      totalPrice += item.productPrice * item.quantity;
+    });
+    return { totalPrice, totalQuantity };
+  };
+
   useEffect(() => {
     try {
       const url = "http://localhost:5000/create-payment-intent";
@@ -39,7 +52,7 @@ const CheckoutForm = (props) => {
           "Content-Type": "application/json",
           authorization: `Bearer ${localStorage.getItem("idToken")}`,
         },
-        body: JSON.stringify({ productPrice }),
+        body: JSON.stringify({ total_amount: getTotal()?.totalPrice }),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -146,6 +159,9 @@ const CheckoutForm = (props) => {
         });
     }
   };
+
+  console.log("inside checkout form modal =", cart);
+
   return (
     <>
       <Modal
@@ -159,10 +175,7 @@ const CheckoutForm = (props) => {
             id="contained-modal-title-vcenter"
             className=" text-center"
           >
-            {/* <p className="text-success font-bold">Hello, {props.userName}</p> */}
-            <h2 class="card-title mb-4">Product Name: {productName}</h2>
-
-            <p>Product Price: ${productPrice}</p>
+            <p>Total Payable Amount: ${getTotal()?.totalPrice}</p>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
