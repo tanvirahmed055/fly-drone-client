@@ -21,7 +21,7 @@ const CheckoutForm = (props) => {
     address,
     phone,
     city,
-    color,
+    // color,
     productName,
     productPrice,
     show,
@@ -107,7 +107,7 @@ const CheckoutForm = (props) => {
         order_items: {
           productName,
           productPrice,
-          productColor: color,
+          // productColor: color,
         },
         order_status: "pending",
         transactionId: paymentIntent.id,

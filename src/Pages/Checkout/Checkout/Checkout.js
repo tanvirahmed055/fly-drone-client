@@ -104,8 +104,8 @@ const Checkout = () => {
                 <label htmlFor="city">City</label>
                 <input placeholder="city" {...register("city")} />
 
-                <label htmlFor="color">Product Color</label>
-                <input placeholder="preferred color" {...register("color")} />
+                {/* <label htmlFor="color">Product Color</label>
+                <input placeholder="preferred color" {...register("color")} /> */}
 
                 <div style={{ color: "red" }}>
                   {Object.keys(errors).length > 0 &&
@@ -127,7 +127,7 @@ const Checkout = () => {
                     address={watch("address")}
                     phone={watch("phonenumber")}
                     city={watch("city")}
-                    color={watch("color")}
+                    // color={watch("color")}
                     // productName={product?.productName}
                     // productPrice={product?.productPrice}
                     reset={reset}
