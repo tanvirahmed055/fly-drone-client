@@ -66,7 +66,17 @@ const Explore = () => {
                           variant="primary"
                           size="lg"
                           className="fw-bolder fs-5"
-                          onClick={() => navigate(`/purchase/${product?._id}`)}
+                          onClick={() => {
+                            dispatch(
+                              addToCart({
+                                _id: product?._id,
+                                productName: product?.productName,
+                                productImg: product?.productImg,
+                                productPrice: product?.productPrice,
+                              })
+                            );
+                            navigate("/checkout");
+                          }}
                         >
                           Purchase
                         </Button>
@@ -76,12 +86,12 @@ const Explore = () => {
                           className="fw-bolder fs-5 ms-2"
                           onClick={() =>
                             dispatch(
-                              addToCart(
-                                product?._id,
-                                product?.productName,
-                                product?.productImg,
-                                product?.productPrice
-                              )
+                              addToCart({
+                                _id: product?._id,
+                                productName: product?.productName,
+                                productImg: product?.productImg,
+                                productPrice: product?.productPrice,
+                              })
                             )
                           }
                         >

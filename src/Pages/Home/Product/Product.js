@@ -50,7 +50,17 @@ const Product = (props) => {
                   variant="primary"
                   size="lg"
                   className="fw-bolder fs-5"
-                  onClick={() => navigate(`/purchase/${_id}`)}
+                  onClick={() => {
+                    dispatch(
+                      addToCart({
+                        _id,
+                        productName,
+                        productImg,
+                        productPrice,
+                      })
+                    );
+                    navigate("/checkout");
+                  }}
                 >
                   Purchase
                 </Button>

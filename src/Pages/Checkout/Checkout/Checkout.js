@@ -17,8 +17,8 @@ const stripePromise = loadStripe(
   "pk_test_51JvvPUEz32mQlkG5L683R8ntXgn2rrBLmOf4IDFcfTCyObc1U6HcpnoPGSDMtGeki2jGs7GLEnEw5oLM8C6KL84q00JK7AGCFu"
 );
 
-const Purchase = () => {
-  const { id } = useParams();
+const Checkout = () => {
+  // const { id } = useParams();
 
   const { userInfo } = useAuth();
 
@@ -35,20 +35,20 @@ const Purchase = () => {
     e.preventDefault();
   };
 
-  const {
-    isLoading,
-    error,
-    data: product,
-    refetch,
-  } = useQuery({
-    queryKey: ["products", id],
-    queryFn: () =>
-      fetch(`http://localhost:5000/product?id=${id}`).then((res) => res.json()),
-  });
+  // const {
+  //   isLoading,
+  //   error,
+  //   data: product,
+  //   refetch,
+  // } = useQuery({
+  //   queryKey: ["products", id],
+  //   queryFn: () =>
+  //     fetch(`http://localhost:5000/product?id=${id}`).then((res) => res.json()),
+  // });
 
-  if (isLoading) return <Spinner animation="grow" />;
+  // if (isLoading) return <Spinner animation="grow" />;
 
-  if (error) return toast.error("Failed to load data");
+  // if (error) return toast.error("Failed to load data");
 
   return (
     <>
@@ -128,10 +128,10 @@ const Purchase = () => {
                     phone={watch("phonenumber")}
                     city={watch("city")}
                     color={watch("color")}
-                    productName={product?.productName}
-                    productPrice={product?.productPrice}
+                    // productName={product?.productName}
+                    // productPrice={product?.productPrice}
                     reset={reset}
-                    refetch={refetch}
+                    // refetch={refetch}
                   />{" "}
                 </Elements>
               )}
@@ -144,4 +144,4 @@ const Purchase = () => {
   );
 };
 
-export default Purchase;
+export default Checkout;

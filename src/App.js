@@ -6,7 +6,6 @@ import Login from "./Pages/Login/Login/Login";
 import Register from "./Pages/Login/Register/Register";
 import AuthProvider from "./context/AuthProvider";
 import Explore from "./Pages/Explore/Explore/Explore";
-import Purchase from "./Pages/Purchase/Purchase/Purchase";
 import PrivateRoute from "./Pages/Login/PrivateRoute/PrivateRoute";
 import DashboardHome from "./Pages/Dashboard/DashboardHome/DashboardHome";
 import AddAProduct from "./Pages/Dashboard/AddAProduct/AddAProduct";
@@ -19,6 +18,8 @@ import Review from "./Pages/Dashboard/Review/Review";
 import Invoice from "./Pages/Dashboard/Invoice/Invoice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CheckoutForm from "./Pages/Checkout/Checkout/components/CheckoutFormModal";
+import Checkout from "./Pages/Checkout/Checkout/Checkout";
 
 function App() {
   return (
@@ -73,10 +74,10 @@ function App() {
             </Route>
 
             <Route
-              path="purchase/:id"
+              path="checkout"
               element={
                 <PrivateRoute>
-                  <Purchase />
+                  <Checkout />
                 </PrivateRoute>
               }
             ></Route>
