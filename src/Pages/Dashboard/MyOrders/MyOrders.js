@@ -44,12 +44,13 @@ const MyOrders = () => {
               <thead>
                 <tr>
                   <th></th>
-                  <th>Product Name</th>
-                  <th>Price</th>
-                  <th>Color</th>
-                  <th>Email</th>
+                  <th>Order Id</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Total Amount</th>
+                  <th>Paid Amount</th>
                   <th>Status</th>
-                  <th>Delete</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -57,11 +58,11 @@ const MyOrders = () => {
                   return (
                     <tr key={order?._id}>
                       <td>{index}</td>
-                      <td>{order?.order_items?.productName}</td>
-                      <td>{order?.order_items?.productPrice}</td>
-                      <td>{order?.productColor}</td>
-                      <td>{order?.email}</td>
-
+                      <td>{order?._id}</td>
+                      <td>{order?.name}</td>
+                      <td>{order?.phone}</td>
+                      <td>{order?.total_amount}</td>
+                      <td>{order?.total_amount}</td>
                       <td>{order?.order_status}</td>
                       <td>
                         <Button

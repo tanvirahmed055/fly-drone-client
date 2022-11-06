@@ -111,17 +111,22 @@ const CheckoutForm = (props) => {
 
       // store payment on database
 
+      const order_items = cart?.map((item) => {
+        return {
+          productName: item.productName,
+          productPrice: item.productPrice,
+          quantity: item.quantity,
+        };
+      });
+
       const orderData = {
         name: userName,
         email: email,
         address: address,
         phone: phone,
         city: city,
-        order_items: {
-          productName,
-          productPrice,
-          // productColor: color,
-        },
+        order_items: order_items,
+        total_amount: getTotal()?.totalPrice,
         order_status: "pending",
         transactionId: paymentIntent.id,
       };
