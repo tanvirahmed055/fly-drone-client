@@ -175,11 +175,66 @@ const CheckoutForm = (props) => {
             id="contained-modal-title-vcenter"
             className=" text-center"
           >
-            <p>Total Payable Amount: ${getTotal()?.totalPrice}</p>
+            <h6 className="fs-6 text-start">Pay by card</h6>
+            <hr></hr>
+            <div className="d-flex justify-between">
+              <span className="fs-5 text-start">Total Payable Amount:</span>
+              <span className="fs-5 text-start ms-2">
+                <span className="fw-light">$</span>
+                <span> </span>
+                {getTotal()?.totalPrice}
+              </span>
+            </div>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="p-4">
           <form>
+            <label for="basic-url" class="form-label">
+              Name
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Recipient's username"
+              aria-label="Recipient's username"
+              aria-describedby="basic-addon2"
+              disabled
+              value={userName}
+            />
+            <div class="row gx-5 mt-4">
+              <div class="col">
+                <label for="email" class="form-label">
+                  Email
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="email"
+                  aria-label="email"
+                  disabled
+                  value={email}
+                />{" "}
+              </div>
+              <div class="col">
+                <label for="phone" class="form-label">
+                  Phone
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  // placeholder="phone"
+                  aria-label="phone"
+                  disabled
+                  value={phone}
+                  placeholder="01687654345"
+                ></input>
+              </div>
+            </div>
+
+            <h6 className="mb-4 mt-5">
+              Card Number{" "}
+              <span className="fw-normal">(Ex. 4242 4242 4242 4242)</span>
+            </h6>
             <CardElement
               options={{
                 style: {
