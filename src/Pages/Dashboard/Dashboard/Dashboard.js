@@ -7,8 +7,6 @@ import "./Dashboard.css";
 const Dashboard = () => {
   const { handleLogOut, role } = useAuth();
 
-  //console.log('inside dashboard', role);
-
   return (
     <Container fluid>
       <Row>
@@ -85,22 +83,22 @@ const Dashboard = () => {
                   </Link>
                 </li>
               )}
-
-              {/* {
-                                (role !== 'admin') && <li className="pb-4">
-                                    <Link to="/dashboard/pay" className="text-center text-white fw-bolder ">Pay</Link>
-                                </li>
-                            } */}
+              <li className="pb-4">
+                <Link to="/" className="text-center text-white fw-bolder">
+                  <i className="fa fa-arrow-left" aria-hidden="true"></i>{" "}
+                  <span className="text-decoration-underline">Go Home</span>
+                </Link>
+              </li>
 
               <li>
                 <Link to="/">
                   <Button
                     variant="danger"
-                    className="me-3 mb-1 fw-bold text-white"
-                    size="lg"
+                    className="me-2 mb-1 fw-bold text-white"
+                    size="sm"
                     onClick={() => handleLogOut()}
                   >
-                    Logout
+                    Sign out
                   </Button>
                 </Link>
               </li>

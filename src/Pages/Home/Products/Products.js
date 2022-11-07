@@ -22,8 +22,8 @@ const Products = () => {
 
   return (
     <div className="container mt-5" id="products">
-      <h1 className="text-center fw-bold mb-4 fst-italic">Our Products</h1>
-      <h4 className="text-center mb-5 text-secondary pb-5 fst-italic">
+      <h1 className="text-center fw-bold mb-4">Our Products</h1>
+      <h4 className="text-center mb-5 text-secondary pb-5 ">
         See Our Diverse and Unique Drones
       </h4>
 

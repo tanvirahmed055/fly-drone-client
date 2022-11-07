@@ -5,6 +5,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Login.css";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -118,6 +119,11 @@ const Login = () => {
                 className="bg-primary text-white mt-4 p-3 fw-bold border border-0"
               />
             </form>
+            <Link to="/register">
+              <h6 className="pt-4 text-light fw-bolder text-decoration-underline">
+                New here? <span>Create Account</span>
+              </h6>
+            </Link>
           </Container>
         </Col>
       </Row>

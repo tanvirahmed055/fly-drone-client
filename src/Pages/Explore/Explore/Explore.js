@@ -32,10 +32,8 @@ const Explore = () => {
     <>
       <Header></Header>
       <Container fluid className="mt-5 pt-4">
-        <h1 className="text-center fw-bold mb-4 fst-italic mt-5">
-          Our Products
-        </h1>
-        <h4 className="text-center mb-5 text-secondary pb-5 fst-italic">
+        <h1 className="text-center fw-bold mb-4  mt-5">Our Products</h1>
+        <h4 className="text-center mb-5 text-secondary pb-5 ">
           See Our Diverse and Unique Drones
         </h4>
         <Row xs={1} md={3} className="g-2">

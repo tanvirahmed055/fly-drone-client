@@ -49,19 +49,13 @@ const Header = () => {
               style={{ fontWeight: "bold" }}
               to="/explore"
             >
-              Explore
+              Store
             </HashLink>
 
-            {userInfo?.displayName ? (
+            {userInfo?.email && (
               <Link to="/dashboard">
                 <Button variant="primary" className="me-3 fw-bold">
                   Dashboard
-                </Button>
-              </Link>
-            ) : (
-              <Link to="/register">
-                <Button variant="danger" className="me-3">
-                  Signup
                 </Button>
               </Link>
             )}
@@ -78,59 +72,56 @@ const Header = () => {
               </Link>
             ) : (
               <Link to="/login">
-                <Button variant="warning" className="me-3">
-                  Login
+                <Button variant="warning" className="me-3 ">
+                  Sign in
+                  <i className="fa fa-sign-in ps-2" aria-hidden="true"></i>
                 </Button>
               </Link>
             )}
 
             {/* {userInfo?.email &&
-             <Link to="/">
-               <Button
-                 variant="warning"
-                 className="me-3 mb-1"
-                 onClick={() => handleLogOut()}
-               >
-                 Cart
-               </Button>
-             </Link>} */}
+            <Link to="/">
+              <Button
+                variant="warning"
+                className="me-3 mb-1"
+                onClick={() => handleLogOut()}
+              >
+                Cart
+              </Button>
+            </Link>} */}
 
             {/* {
-             <Link to="/cart">
-               <Button
-                 variant="btn btn-light"
-                 className="me-3 mb-1 rounded-circle"
-                 style={{position: 'relative'}}    
-               >
-                 <i class="fas fa-cart-arrow-down"></i>
-                 <span style={{position: 'absolute', bottom: '25px', color: 'white', right: '-5px'}}>5</span>
- 
-               </Button>
-             </Link>} */}
-
-            {
-              <Link to="/cart">
+            <Link to="/cart">
+              <Button
+                variant="btn btn-light"
+                className="me-3 mb-1 rounded-circle"
+                style={{position: 'relative'}}   
+              >
+                <i class="fas fa-cart-arrow-down"></i>
+                <span style={{position: 'absolute', bottom: '25px', color: 'white', right: '-5px'}}>5</span>
+              </Button>
+            </Link>} */}
+            <Link to="/checkout">
+              <Button
+                variant="btn btn-light"
+                className="me-3 mb-1 rounded-circle "
+                style={{ position: "relative" }}
+              >
+                <i class="fas fa-cart-arrow-down"></i>
                 <Button
-                  variant="btn btn-light"
-                  className="me-3 mb-1 rounded-circle btn-lg"
-                  style={{ position: "relative" }}
+                  variant="btn btn-danger"
+                  className=" rounded-circle btn-sm"
+                  style={{
+                    position: "absolute",
+                    bottom: "25px",
+                    color: "white",
+                    right: "-10px",
+                  }}
                 >
-                  <i class="fas fa-cart-arrow-down"></i>
-                  <Button
-                    variant="btn btn-danger"
-                    className=" rounded-circle btn-sm"
-                    style={{
-                      position: "absolute",
-                      bottom: "25px",
-                      color: "white",
-                      right: "-10px",
-                    }}
-                  >
-                    {getTotalQuantity() || 0}
-                  </Button>
+                  {getTotalQuantity() || 0}
                 </Button>
-              </Link>
-            }
+              </Button>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

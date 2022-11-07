@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const {
@@ -118,6 +119,11 @@ const Register = () => {
                 className="bg-primary text-white mt-4 p-3 fw-bold border border-0"
               />
             </form>
+            <Link to="/login">
+              <h6 className="pt-4 text-light fw-bolder text-decoration-underline">
+                Already a user? <span>Sign in</span>
+              </h6>
+            </Link>
           </Container>
         </Col>
       </Row>
