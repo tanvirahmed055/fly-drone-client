@@ -4,7 +4,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../../../../redux/cartSlice";
 
 const CheckoutForm = (props) => {
   const stripe = useStripe();
@@ -16,12 +17,13 @@ const CheckoutForm = (props) => {
 
   let navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   const {
     userName,
     email,
     address,
     phone,
-    city,
     // color,
     productName,
     productPrice,
@@ -44,7 +46,7 @@ const CheckoutForm = (props) => {
 
   useEffect(() => {
     try {
-      const url = "http://localhost:5000/create-payment-intent";
+      const url = "http://localhost:5000/api/server/create-payment-intent";
 
       fetch(url, {
         method: "POST",
@@ -124,14 +126,13 @@ const CheckoutForm = (props) => {
         email: email,
         address: address,
         phone: phone,
-        city: city,
         order_items: order_items,
         total_amount: getTotal()?.totalPrice,
         order_status: "pending",
         transactionId: paymentIntent.id,
       };
 
-      fetch("http://localhost:5000/orders", {
+      fetch("http://localhost:5000/api/server/orders", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -144,6 +145,7 @@ const CheckoutForm = (props) => {
           console.log(data);
           reset();
           onHide();
+          dispatch(clearCart());
           // toast.success("Order confirmation with payment is successful.");
           toast.update(id, {
             render: "Order confirmation with payment is successful.",

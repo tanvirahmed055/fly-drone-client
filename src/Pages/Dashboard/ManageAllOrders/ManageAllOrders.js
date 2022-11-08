@@ -13,7 +13,9 @@ const ManageAllOrders = () => {
   } = useQuery({
     queryKey: ["manageAllOrders"],
     queryFn: () =>
-      fetch("http://localhost:5000/allOrders").then((res) => res.json()),
+      fetch("http://localhost:5000/api/server/allOrders").then((res) =>
+        res.json()
+      ),
   });
 
   const handleDelete = (id) => {
@@ -24,7 +26,7 @@ const ManageAllOrders = () => {
     );
 
     if (confirmation) {
-      fetch(`http://localhost:5000/deleteOrder/${id}`, {
+      fetch(`http://localhost:5000/api/server/deleteOrder/${id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
@@ -41,7 +43,7 @@ const ManageAllOrders = () => {
   };
 
   const handleUpdate = (id) => {
-    const url = "http://localhost:5000/updateStatus";
+    const url = "http://localhost:5000/api/server/updateStatus";
 
     const orderInfo = {
       orderId: id,

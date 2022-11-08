@@ -5,28 +5,24 @@ import Header from "../../Shared/Header/Header";
 import Footer from "../../Shared/Footer/Footer";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
+import { products_data } from "../../../assets/mock_data/products_data";
 
 const Explore = () => {
   let navigate = useNavigate();
 
   const dispatch = useDispatch();
 
-  const {
-    isLoading,
-    error,
-    data: products,
-  } = useQuery({
+  const { isLoading, data: products } = useQuery({
     queryKey: ["explore"],
     queryFn: () =>
-      fetch("http://localhost:5000/products").then((res) => res.json()),
+      fetch("http://localhost:5000/api/server/products").then((res) =>
+        res.json()
+      ),
   });
 
   if (isLoading) return <Spinner animation="grow" />;
-
-  if (error) return toast.error("Failed to load data");
 
   return (
     <>
@@ -37,7 +33,7 @@ const Explore = () => {
           See Our Diverse and Unique Drones
         </h4>
         <Row xs={1} md={3} className="g-2">
-          {products?.map((product) => (
+          {(products || products_data)?.map((product) => (
             <Col key={product?._id}>
               <Card className="text-center h-100">
                 <Card.Img

@@ -3,22 +3,18 @@ import { Row } from "react-bootstrap";
 import Product from "../Product/Product";
 import Spinner from "react-bootstrap/Spinner";
 import { useQuery } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import { products_data } from "../../../assets/mock_data/products_data";
 
 const Products = () => {
-  const {
-    isLoading,
-    error,
-    data: products,
-  } = useQuery({
+  const { isLoading, data: products } = useQuery({
     queryKey: ["product"],
     queryFn: () =>
-      fetch("http://localhost:5000/products").then((res) => res.json()),
+      fetch("http://localhost:5000/api/server/products").then((res) =>
+        res.json()
+      ),
   });
 
   if (isLoading) return <Spinner animation="grow" />;
-
-  if (error) return toast.error("Failed to load data");
 
   return (
     <div className="container mt-5" id="products">
@@ -28,7 +24,7 @@ const Products = () => {
       </h4>
 
       <Row xs={1} md={2} className="g-1">
-        {products?.slice(0, 6)?.map((product) => (
+        {(products || products_data)?.slice(0, 6)?.map((product) => (
           <Product key={product._id} product={product}></Product>
         ))}
       </Row>

@@ -43,7 +43,7 @@ const Checkout = () => {
   // } = useQuery({
   //   queryKey: ["products", id],
   //   queryFn: () =>
-  //     fetch(`http://localhost:5000/product?id=${id}`).then((res) => res.json()),
+  //     fetch(`http://localhost:5000/api/server/product?id=${id}`).then((res) => res.json()),
   // });
 
   // if (isLoading) return <Spinner animation="grow" />;
@@ -95,14 +95,11 @@ const Checkout = () => {
                   {...register("email")}
                 />
 
-                <label htmlFor="address">Address</label>
+                <label htmlFor="address">Delivery Address</label>
                 <input placeholder="address" {...register("address")} />
 
                 <label htmlFor="phonenumber">Phone Number</label>
                 <input placeholder="0168...." {...register("phonenumber")} />
-
-                <label htmlFor="city">City</label>
-                <input placeholder="city" {...register("city")} />
 
                 {/* <label htmlFor="color">Product Color</label>
                 <input placeholder="preferred color" {...register("color")} /> */}
@@ -126,7 +123,6 @@ const Checkout = () => {
                     email={watch("email")}
                     address={watch("address")}
                     phone={watch("phonenumber")}
-                    city={watch("city")}
                     // color={watch("color")}
                     // productName={product?.productName}
                     // productPrice={product?.productPrice}

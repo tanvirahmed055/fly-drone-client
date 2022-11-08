@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -34,7 +35,8 @@ const cartSlice = createSlice({
       );
       state.cart = removeItem;
     },
-    emptyCart: (state, action) => {
+    clearCart: (state, action) => {
+      storage.removeItem("persist:root");
       state.cart = [];
     },
   },
@@ -46,4 +48,5 @@ export const {
   incrementItemQuantity,
   decrementItemQuantity,
   removeItem,
+  clearCart,
 } = cartSlice.actions;

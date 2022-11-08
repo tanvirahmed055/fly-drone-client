@@ -12,7 +12,9 @@ const ManageProducts = () => {
   } = useQuery({
     queryKey: ["manageProducts"],
     queryFn: () =>
-      fetch("http://localhost:5000/products").then((res) => res.json()),
+      fetch("http://localhost:5000/api/server/products").then((res) =>
+        res.json()
+      ),
   });
 
   const handleDelete = (id) => {
@@ -22,7 +24,7 @@ const ManageProducts = () => {
     );
 
     if (confirmation) {
-      fetch(`http://localhost:5000/deleteProduct/${id}`, {
+      fetch(`http://localhost:5000/api/server/deleteProduct/${id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
