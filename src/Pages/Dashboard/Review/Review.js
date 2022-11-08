@@ -24,7 +24,7 @@ const Review = () => {
 
     //console.log(newReview);
 
-    const url = "http://localhost:5000/api/server/addReview";
+    const url = "https://gentle-lime-beaver.cyclic.app/api/server/addReview";
 
     fetch(url, {
       method: "POST",

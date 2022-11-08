@@ -12,8 +12,8 @@ const ManageProducts = () => {
   } = useQuery({
     queryKey: ["manageProducts"],
     queryFn: () =>
-      fetch("http://localhost:5000/api/server/products").then((res) =>
-        res.json()
+      fetch("https://gentle-lime-beaver.cyclic.app/api/server/products").then(
+        (res) => res.json()
       ),
   });
 
@@ -24,9 +24,12 @@ const ManageProducts = () => {
     );
 
     if (confirmation) {
-      fetch(`http://localhost:5000/api/server/deleteProduct/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://gentle-lime-beaver.cyclic.app/api/server/deleteProduct/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           //console.log('Success:', data);

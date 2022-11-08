@@ -17,8 +17,8 @@ const Explore = () => {
   const { isLoading, data: products } = useQuery({
     queryKey: ["explore"],
     queryFn: () =>
-      fetch("http://localhost:5000/api/server/products").then((res) =>
-        res.json()
+      fetch("https://gentle-lime-beaver.cyclic.app/api/server/products").then(
+        (res) => res.json()
       ),
   });
 
