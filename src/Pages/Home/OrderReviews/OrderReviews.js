@@ -9,9 +9,7 @@ const OrderReviews = () => {
   const { isLoading, data: reviews } = useQuery({
     queryKey: ["orderReviews"],
     queryFn: () =>
-      fetch("https://gentle-lime-beaver.cyclic.app/api/server/reviews").then(
-        (res) => res.json()
-      ),
+      fetch("http://localhost:5000/reviews").then((res) => res.json()),
   });
 
   if (isLoading) return <Spinner animation="grow" />;

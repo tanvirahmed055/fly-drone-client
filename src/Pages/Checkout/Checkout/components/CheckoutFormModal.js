@@ -46,8 +46,7 @@ const CheckoutForm = (props) => {
 
   useEffect(() => {
     try {
-      const url =
-        "https://gentle-lime-beaver.cyclic.app/api/server/create-payment-intent";
+      const url = "http://localhost:5000/create-payment-intent";
 
       fetch(url, {
         method: "POST",
@@ -133,7 +132,7 @@ const CheckoutForm = (props) => {
         transactionId: paymentIntent.id,
       };
 
-      fetch("https://gentle-lime-beaver.cyclic.app/api/server/orders", {
+      fetch("http://localhost:5000/orders", {
         method: "POST",
         headers: {
           "content-type": "application/json",

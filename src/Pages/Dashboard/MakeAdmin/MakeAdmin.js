@@ -23,7 +23,7 @@ const MakeAdmin = () => {
 
     //console.log(inputEmail);
 
-    const url = "https://gentle-lime-beaver.cyclic.app/api/server/makeAdmin";
+    const url = "http://localhost:5000/makeAdmin";
 
     //console.log(localStorage.getItem('idToken'));
     fetch(url, {

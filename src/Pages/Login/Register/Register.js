@@ -67,7 +67,7 @@ const Register = () => {
 
   const storeUser = async (name, email) => {
     const user = { name, email, role: "user" };
-    const url = `https://gentle-lime-beaver.cyclic.app/api/server/users/${email}`;
+    const url = `http://localhost:5000/users/${email}`;
     return fetch(url, {
       method: "PUT",
       headers: {

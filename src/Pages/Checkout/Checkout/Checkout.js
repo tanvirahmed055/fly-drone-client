@@ -43,7 +43,7 @@ const Checkout = () => {
   // } = useQuery({
   //   queryKey: ["products", id],
   //   queryFn: () =>
-  //     fetch(`https://gentle-lime-beaver.cyclic.app/api/server/product?id=${id}`).then((res) => res.json()),
+  //     fetch(`http://localhost:5000/product?id=${id}`).then((res) => res.json()),
   // });
 
   // if (isLoading) return <Spinner animation="grow" />;

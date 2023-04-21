@@ -24,7 +24,7 @@ const AddAProduct = () => {
 
     console.log(newOrder);
 
-    const url = "https://gentle-lime-beaver.cyclic.app/api/server/addProduct";
+    const url = "http://localhost:5000/addProduct";
 
     fetch(url, {
       method: "POST",

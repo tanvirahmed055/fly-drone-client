@@ -18,9 +18,9 @@ const MyOrders = () => {
   } = useQuery({
     queryKey: ["myOrders", userEmail],
     queryFn: () =>
-      fetch(
-        `https://gentle-lime-beaver.cyclic.app/api/server/orders?email=${userEmail}`
-      ).then((res) => res.json()),
+      fetch(`http://localhost:5000/orders?email=${userEmail}`).then((res) =>
+        res.json()
+      ),
   });
 
   if (isLoading) return <Spinner animation="grow" />;

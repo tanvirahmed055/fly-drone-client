@@ -74,7 +74,7 @@ const useFirebase = () => {
           //console.log(idToken);
         });
 
-        const url = `https://gentle-lime-beaver.cyclic.app/api/server/user?email=${user?.email}`;
+        const url = `http://localhost:5000/user?email=${user?.email}`;
 
         try {
           fetch(url)

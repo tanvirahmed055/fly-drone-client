@@ -21,9 +21,7 @@ const Invoice = () => {
   } = useQuery({
     queryKey: ["invoice", id],
     queryFn: () =>
-      fetch(
-        `https://gentle-lime-beaver.cyclic.app/api/server/orders/${id}`
-      ).then((res) => res.json()),
+      fetch(`http://localhost:5000/orders/${id}`).then((res) => res.json()),
   });
 
   const reactToPrintContent = useCallback(() => {

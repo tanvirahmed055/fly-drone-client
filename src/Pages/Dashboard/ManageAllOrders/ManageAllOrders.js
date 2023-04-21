@@ -13,9 +13,7 @@ const ManageAllOrders = () => {
   } = useQuery({
     queryKey: ["manageAllOrders"],
     queryFn: () =>
-      fetch("https://gentle-lime-beaver.cyclic.app/api/server/allOrders").then(
-        (res) => res.json()
-      ),
+      fetch("http://localhost:5000/allOrders").then((res) => res.json()),
   });
 
   const handleDelete = (id) => {
@@ -26,12 +24,9 @@ const ManageAllOrders = () => {
     );
 
     if (confirmation) {
-      fetch(
-        `https://gentle-lime-beaver.cyclic.app/api/server/deleteOrder/${id}`,
-        {
-          method: "DELETE",
-        }
-      )
+      fetch(`http://localhost:5000/deleteOrder/${id}`, {
+        method: "DELETE",
+      })
         .then((response) => response.json())
         .then((data) => {
           //console.log('Success:', data);
@@ -46,7 +41,7 @@ const ManageAllOrders = () => {
   };
 
   const handleUpdate = (id) => {
-    const url = "https://gentle-lime-beaver.cyclic.app/api/server/updateStatus";
+    const url = "http://localhost:5000/updateStatus";
 
     const orderInfo = {
       orderId: id,
