@@ -72,8 +72,8 @@ const Footer = () => {
           <Col sm={3}>
             <h3 className="mb-4 text-warning fw-bold ">Contact Us</h3>
             <div className="footer-addresss mb-3 text-center">
-              <i className="fas fa-map-marker-alt"></i>&nbsp; 19/1, Gulshan,
-              Dhaka, Bangladesh.
+              <i className="fas fa-map-marker-alt"></i>&nbsp; Priyanka City,
+              Uttara Sector-12, Dhaka-1230.
             </div>
 
             <div className="footer-phone mb-3 text-center">
