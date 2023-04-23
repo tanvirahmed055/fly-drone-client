@@ -18,7 +18,6 @@ import Review from "./Pages/Dashboard/Review/Review";
 import Invoice from "./Pages/Dashboard/Invoice/Invoice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CheckoutForm from "./Pages/Checkout/Checkout/components/CheckoutFormModal";
 import Checkout from "./Pages/Checkout/Checkout/Checkout";
 
 function App() {
