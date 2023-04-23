@@ -6,7 +6,7 @@ import { HashLink } from "react-router-hash-link";
 const Footer = () => {
   return (
     <div
-      className="mt-5  text-white"
+      className="text-white"
       style={{ backgroundColor: "RGB(39, 39, 39)", maxWidth: "100vw" }}
     >
       <Container className="pt-4">
