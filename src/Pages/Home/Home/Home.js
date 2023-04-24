@@ -7,6 +7,7 @@ import OrderReviews from "../OrderReviews/OrderReviews";
 import Products from "../Products/Products";
 import VideoGallery from "../VideoGallery/VideoGallery";
 import MapView from "../MapView/MapView";
+import Clients from "../Clients/Clients";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <Features></Features>
       <OrderReviews></OrderReviews>
       <VideoGallery></VideoGallery>
+      <Clients></Clients>
       <MapView></MapView>
       <Footer></Footer>
     </div>
