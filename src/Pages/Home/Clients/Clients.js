@@ -24,7 +24,7 @@ const Clients = () => {
   return (
     <div
       className="container mt-5 mb-5"
-      id="gallery"
+      id="clients"
       style={{ maxWidth: "100vw" }}
     >
       <h1 className="fw-bolder mb-4" style={{ color: "#9ca3af" }}>

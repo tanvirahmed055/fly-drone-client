@@ -1,12 +1,12 @@
 import React from "react";
 import { Row } from "react-bootstrap";
-import { Card, Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "./MapView.css";
 
 const MapView = () => {
   return (
-    <div className="container mt-5" id="" style={{ maxWidth: "100vw" }}>
+    <div className="container mt-5" id="map-view" style={{ maxWidth: "100vw" }}>
       <Row>
         <Col>
           <MapContainer
