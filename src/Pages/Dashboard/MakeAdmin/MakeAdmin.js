@@ -23,7 +23,7 @@ const MakeAdmin = () => {
 
     //console.log(inputEmail);
 
-    const url = "http://localhost:5000/makeAdmin";
+    const url = "http://localhost:5000/api/server/makeAdmin";
 
     //console.log(localStorage.getItem('idToken'));
     fetch(url, {

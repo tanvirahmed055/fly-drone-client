@@ -67,7 +67,7 @@ const Register = () => {
 
   const storeUser = async (name, email) => {
     const user = { name, email, role: "user" };
-    const url = `http://localhost:5000/users/${email}`;
+    const url = `http://localhost:5000/api/server/users/${email}`;
     return fetch(url, {
       method: "PUT",
       headers: {

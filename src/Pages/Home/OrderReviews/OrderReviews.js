@@ -9,7 +9,9 @@ const OrderReviews = () => {
   const { isLoading, data: reviews } = useQuery({
     queryKey: ["orderReviews"],
     queryFn: () =>
-      fetch("http://localhost:5000/reviews").then((res) => res.json()),
+      fetch("http://localhost:5000/api/server/reviews").then((res) =>
+        res.json()
+      ),
   });
 
   if (isLoading) return <Spinner animation="grow" />;

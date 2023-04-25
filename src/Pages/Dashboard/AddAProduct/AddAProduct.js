@@ -24,7 +24,7 @@ const AddAProduct = () => {
 
     console.log(newOrder);
 
-    const url = "http://localhost:5000/addProduct";
+    const url = "http://localhost:5000/api/server/addProduct";
 
     fetch(url, {
       method: "POST",

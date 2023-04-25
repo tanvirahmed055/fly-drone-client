@@ -18,8 +18,8 @@ const MyOrders = () => {
   } = useQuery({
     queryKey: ["myOrders", userEmail],
     queryFn: () =>
-      fetch(`http://localhost:5000/orders?email=${userEmail}`).then((res) =>
-        res.json()
+      fetch(`http://localhost:5000/api/server/orders?email=${userEmail}`).then(
+        (res) => res.json()
       ),
   });
 

@@ -9,7 +9,9 @@ const Products = () => {
   const { isLoading, data: products } = useQuery({
     queryKey: ["product"],
     queryFn: () =>
-      fetch("http://localhost:5000/products").then((res) => res.json()),
+      fetch("http://localhost:5000/api/server/products").then((res) =>
+        res.json()
+      ),
   });
 
   if (isLoading) return <Spinner animation="grow" />;
