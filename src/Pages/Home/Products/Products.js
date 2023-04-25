@@ -3,7 +3,7 @@ import { Row } from "react-bootstrap";
 import Product from "../Product/Product";
 import Spinner from "react-bootstrap/Spinner";
 import { useQuery } from "@tanstack/react-query";
-import { products_data } from "../../../assets/mock_data/products_data";
+import ProductData from "../../../assets/mock_data/brand_data.json";
 
 const Products = () => {
   const { isLoading, data: products } = useQuery({
@@ -24,7 +24,7 @@ const Products = () => {
       </h4>
 
       <Row xs={1} md={2} className="g-1">
-        {(products || products_data)?.slice(0, 6)?.map((product) => (
+        {(products || ProductData)?.slice(0, 6)?.map((product) => (
           <Product key={product._id} product={product}></Product>
         ))}
       </Row>

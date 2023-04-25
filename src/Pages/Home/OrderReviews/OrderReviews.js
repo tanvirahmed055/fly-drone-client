@@ -3,7 +3,7 @@ import React from "react";
 import { Row, Spinner } from "react-bootstrap";
 import OrderReview from "../OrderReview/OrderReview";
 import "./OrderReviews.css";
-import { reviews_data } from "../../../assets/mock_data/reviews_data";
+import ReviewData from "../../../assets/mock_data/brand_data.json";
 
 const OrderReviews = () => {
   const { isLoading, data: reviews } = useQuery({
@@ -23,7 +23,7 @@ const OrderReviews = () => {
         Hear what our client's has to say about us.
       </h4>
       <Row xs={1} md={3} className="g-4">
-        {(reviews || reviews_data)?.map((review) => (
+        {(reviews || ReviewData)?.map((review) => (
           <OrderReview key={review?._id} review={review}></OrderReview>
         ))}
       </Row>

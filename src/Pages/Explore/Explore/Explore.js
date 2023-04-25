@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
-import { products_data } from "../../../assets/mock_data/products_data";
+import ProductData from "../../../assets/mock_data/brand_data.json";
 
 const Explore = () => {
   let navigate = useNavigate();
@@ -33,7 +33,7 @@ const Explore = () => {
           See Our Diverse and Unique Drones
         </h4>
         <Row xs={1} md={3} className="g-2">
-          {(products || products_data)?.map((product) => (
+          {(products || ProductData)?.map((product) => (
             <Col key={product?._id}>
               <Card className="text-center h-100">
                 <Card.Img
