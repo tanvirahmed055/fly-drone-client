@@ -23,15 +23,14 @@ const Clients = () => {
   };
   return (
     <div
-      className="container mt-5 mb-5 "
+      className="container mt-5 mb-5"
       id="gallery"
       style={{ maxWidth: "100vw" }}
     >
-      <h5 className="text-start pt-5 mt-5 mb-1 text-primary">
+      <h1 className="fw-bolder mb-4" style={{ color: "#9ca3af" }}>
+        {" "}
         Corporate Clients
-      </h5>
-      <h1 className="text-start mb-5 text-dark">Showcase</h1>
-
+      </h1>
       {
         <Row className="gy-4">
           <Col>
