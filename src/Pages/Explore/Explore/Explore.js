@@ -1,26 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import Header from "../../Shared/Header/Header";
 import Footer from "../../Shared/Footer/Footer";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/cartSlice";
-import ProductData from "../../../assets/mock_data/brand_data.json";
+import ProductData from "../../../assets/mock_data/products_data.json";
 
 const Explore = () => {
   let navigate = useNavigate();
-
   const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const { isLoading, data: products } = useQuery({
-    queryKey: ["explore"],
-    queryFn: () =>
-      fetch("http://localhost:5000/api/server/products").then((res) =>
-        res.json()
-      ),
-  });
+  useEffect(() => {
+    // isMounted variable is used to ensure that state updates are only applied when the component is still mounted.
+    let isMounted = true;
+    const fetchData = async () => {
+      const response = await fetch("http://localhost:5000/api/server/products");
+      if (isMounted) {
+        if (response.ok) {
+          const data = await response.json();
+          setProducts(data);
+          setIsLoading(false);
+        } else {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        if (isMounted) {
+          setProducts(ProductData);
+          setIsLoading(false);
+        }
+      }
+    }, 1000);
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+      clearTimeout(timeout);
+    };
+  }, [isLoading]);
 
   if (isLoading) return <Spinner animation="grow" />;
 
@@ -33,7 +58,7 @@ const Explore = () => {
           See Our Diverse and Unique Drones
         </h4>
         <Row xs={1} md={3} className="g-2">
-          {(products || ProductData)?.map((product) => (
+          {products?.map((product) => (
             <Col key={product?._id}>
               <Card className="text-center h-100">
                 <Card.Img

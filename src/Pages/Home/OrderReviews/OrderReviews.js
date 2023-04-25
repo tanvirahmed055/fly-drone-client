@@ -1,18 +1,45 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Spinner } from "react-bootstrap";
 import OrderReview from "../OrderReview/OrderReview";
 import "./OrderReviews.css";
-import ReviewData from "../../../assets/mock_data/brand_data.json";
+import ReviewData from "../../../assets/mock_data/reviews_data.json";
 
 const OrderReviews = () => {
-  const { isLoading, data: reviews } = useQuery({
-    queryKey: ["orderReviews"],
-    queryFn: () =>
-      fetch("http://localhost:5000/api/server/reviews").then((res) =>
-        res.json()
-      ),
-  });
+  const [reviews, setReviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // isMounted variable is used to ensure that state updates are only applied when the component is still mounted.
+    let isMounted = true;
+    const fetchData = async () => {
+      const response = await fetch("http://localhost:5000/api/server/reviews");
+      if (isMounted) {
+        if (response.ok) {
+          const data = await response.json();
+          setReviews(data);
+          setIsLoading(false);
+        } else {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        if (isMounted) {
+          setReviews(ReviewData);
+          setIsLoading(false);
+        }
+      }
+    }, 1000);
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+      clearTimeout(timeout);
+    };
+  }, [isLoading]);
 
   if (isLoading) return <Spinner animation="grow" />;
 
@@ -23,7 +50,7 @@ const OrderReviews = () => {
         Hear what our client's has to say about us.
       </h4>
       <Row xs={1} md={3} className="g-4">
-        {(reviews || ReviewData)?.map((review) => (
+        {reviews?.map((review) => (
           <OrderReview key={review?._id} review={review}></OrderReview>
         ))}
       </Row>
