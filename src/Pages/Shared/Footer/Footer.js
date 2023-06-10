@@ -112,6 +112,7 @@ const Footer = () => {
               <div className="d-flex justify-content-center">
                 <Button variant="danger" className="px-5">
                   Send
+                  <span className="icon-cus icon-send"></span>
                 </Button>{" "}
               </div>
             </Form>

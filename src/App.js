@@ -19,6 +19,7 @@ import Invoice from "./Pages/Dashboard/Invoice/Invoice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Checkout from "./Pages/Checkout/Checkout/Checkout";
+import "@tanvir055/iconia-icon-package";
 
 function App() {
   return (
