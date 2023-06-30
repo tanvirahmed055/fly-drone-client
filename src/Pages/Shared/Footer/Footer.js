@@ -4,6 +4,8 @@ import "./Footer.css";
 import { HashLink } from "react-router-hash-link";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <div
       className="text-white"
@@ -122,7 +124,7 @@ const Footer = () => {
           <Col className="d-flex flex-column align-self-end justify-content-center pb-1  fw-bold">
             <hr />
             <h5 className="text-warning">
-              Copyright © 2022 FlyXDrone, All Rights Reserved.
+              Copyright © {currentYear} FlyXDrone, All Rights Reserved.
             </h5>
           </Col>
         </Row>

@@ -6,6 +6,7 @@ import banner2 from "../../../img/banner2.jpeg";
 import banner3 from "../../../img/banner3.jpeg";
 
 const Banner = () => {
+  const currentYear = new Date().getFullYear();
   return (
     <Carousel fade>
       <Carousel.Item interval={1300}>
@@ -16,7 +17,7 @@ const Banner = () => {
         />
         <Carousel.Caption>
           <h2 className="fw-bold">Providing a Wide Range of Drones</h2>
-          <p>Updated With New Drone Models for 2022</p>
+          <p>Updated With New Drone Models for {currentYear}</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={1300}>
@@ -28,7 +29,7 @@ const Banner = () => {
 
         <Carousel.Caption>
           <h2 className="fw-bold">Providing Premium World Class Drones</h2>
-          <p>Updated With New Drone Models for 2022</p>
+          <p>Updated With New Drone Models for {currentYear}</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={1300}>
@@ -40,7 +41,7 @@ const Banner = () => {
 
         <Carousel.Caption>
           <h2 className="fw-bold">High Rated Camera Drones</h2>
-          <p>Updated With New Drone Models for 2022</p>
+          <p>Updated With New Drone Models for {currentYear}</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
