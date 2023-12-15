@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Col, Container, Row, Card, Button } from "react-bootstrap";
-import Spinner from "react-bootstrap/Spinner";
-import Header from "../../Shared/Header/Header";
-import Footer from "../../Shared/Footer/Footer";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../../redux/cartSlice";
-import ProductData from "../../../assets/mock_data/products_data.json";
+import React, { useEffect, useState } from 'react';
+import { Col, Container, Row, Card, Button } from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner';
+import Header from '../../Shared/Header/Header';
+import Footer from '../../Shared/Footer/Footer';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../redux/cartSlice';
+import ProductData from '../../../assets/mock_data/products_data.json';
 
 const Explore = () => {
   let navigate = useNavigate();
@@ -15,27 +15,33 @@ const Explore = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // isMounted variable is used to ensure that state updates are only applied when the component is still mounted.
     let isMounted = true;
+
     const fetchData = async () => {
-      const response = await fetch("http://localhost:5000/api/server/products");
-      if (isMounted) {
-        if (response.ok) {
-          const data = await response.json();
-          setProducts(data);
-          setIsLoading(false);
-        } else {
+      try {
+        const response = await fetch(
+          'http://localhost:5000/api/server/products'
+        );
+
+        if (isMounted) {
+          if (response.ok) {
+            const data = await response.json();
+            setProducts(data);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+      } finally {
+        if (isMounted) {
           setIsLoading(false);
         }
       }
     };
 
     const timeout = setTimeout(() => {
-      if (isLoading) {
-        if (isMounted) {
-          setProducts(ProductData);
-          setIsLoading(false);
-        }
+      if (isLoading && isMounted) {
+        setProducts(ProductData);
+        setIsLoading(false);
       }
     }, 1000);
 
@@ -47,44 +53,44 @@ const Explore = () => {
     };
   }, [isLoading]);
 
-  if (isLoading) return <Spinner animation="grow" />;
+  if (isLoading) return <Spinner animation='grow' />;
 
   return (
     <>
       <Header></Header>
-      <Container fluid className="mt-5 pt-4">
-        <h1 className="text-center fw-bold mb-4  mt-5">Our Products</h1>
-        <h4 className="text-center mb-5 text-secondary pb-5 ">
+      <Container fluid className='mt-5 pt-4'>
+        <h1 className='text-center fw-bold mb-4  mt-5'>Our Products</h1>
+        <h4 className='text-center mb-5 text-secondary pb-5 '>
           See Our Diverse and Unique Drones
         </h4>
-        <Row xs={1} md={3} className="g-2">
-          {products?.map((product) => (
+        <Row xs={1} md={3} className='g-2'>
+          {ProductData?.map((product) => (
             <Col key={product?._id}>
-              <Card className="text-center h-100">
+              <Card className='text-center h-100'>
                 <Card.Img
-                  variant="top"
+                  variant='top'
                   src={product?.productImg}
-                  style={{ height: "300px" }}
+                  style={{ height: '300px' }}
                 />
                 <Card.Body>
-                  <Card.Title className="fw-bolder text-start">
+                  <Card.Title className='fw-bolder text-start'>
                     {product?.productName}
                   </Card.Title>
-                  <Card.Text className="text-start">
+                  <Card.Text className='text-start'>
                     {product?.shortDescription}
                   </Card.Text>
                   <Card.Footer>
-                    <Row className="d-flex justify-content-between align-items-center pt-2">
+                    <Row className='d-flex justify-content-between align-items-center pt-2'>
                       <Col sm={4}>
-                        <Card.Title className="text-start fw-bold fs-3">
+                        <Card.Title className='text-start fw-bold fs-3'>
                           ${product?.productPrice}
                         </Card.Title>
                       </Col>
                       <Col sm={8}>
                         <Button
-                          variant="primary"
-                          size="lg"
-                          className="fw-bolder fs-5"
+                          variant='primary'
+                          size='lg'
+                          className='fw-bolder fs-5'
                           onClick={() => {
                             dispatch(
                               addToCart({
@@ -94,15 +100,15 @@ const Explore = () => {
                                 productPrice: product?.productPrice,
                               })
                             );
-                            navigate("/checkout");
+                            navigate('/checkout');
                           }}
                         >
                           Purchase
                         </Button>
                         <Button
-                          variant="danger"
-                          size="lg"
-                          className="fw-bolder fs-5 ms-2"
+                          variant='danger'
+                          size='lg'
+                          className='fw-bolder fs-5 ms-2'
                           onClick={() =>
                             dispatch(
                               addToCart({
