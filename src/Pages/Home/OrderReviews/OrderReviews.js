@@ -58,8 +58,12 @@ const OrderReviews = () => {
         Hear what our client's has to say about us.
       </h4>
       <Row xs={1} md={3} className='g-4'>
-        {ReviewData?.map((review) => (
-          <OrderReview key={review?._id} review={review}></OrderReview>
+        {ReviewData?.map((review, index) => (
+          <OrderReview
+            key={review?._id}
+            review={review}
+            position={index + 1}
+          ></OrderReview>
         ))}
       </Row>
     </div>
