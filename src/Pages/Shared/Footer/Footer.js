@@ -147,7 +147,13 @@ const Footer = () => {
         </Row>
         <Row>
           <Col className='d-flex flex-column align-self-end justify-content-center pb-1  fw-bold'>
-            <hr />
+            <motion.div
+              initial={{ y: '2svh' }}
+              whileInView={{ y: '0' }}
+              transition={{ duration: 2 }}
+            >
+              <hr />
+            </motion.div>
 
             <motion.h5
               initial={{ y: '2svh' }}
