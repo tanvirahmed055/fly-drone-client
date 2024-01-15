@@ -19,7 +19,7 @@ const Banner = () => {
         <motion.div
           initial={{ y: '-10svh' }}
           whileInView={{ y: '0' }}
-          transition={{ duration: 3 }}
+          transition={{ duration: 2 }}
         >
           {' '}
           <Carousel.Caption>
@@ -37,7 +37,7 @@ const Banner = () => {
         <motion.div
           initial={{ y: '-10svh' }}
           whileInView={{ y: '0' }}
-          transition={{ duration: 3 }}
+          transition={{ duration: 2 }}
         >
           {' '}
           <Carousel.Caption>
@@ -55,7 +55,7 @@ const Banner = () => {
         <motion.div
           initial={{ y: '-10svh' }}
           whileInView={{ y: '0' }}
-          transition={{ duration: 3 }}
+          transition={{ duration: 2 }}
         >
           {' '}
           <Carousel.Caption>
