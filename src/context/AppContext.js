@@ -6,7 +6,7 @@ export function useApp() {
   return useContext(AppContext);
 }
 export const AppContextProvider = ({ children = {} }) => {
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [isInitialLoad, setIsInitialLoad] = useState(false);
 
 //   useEffect(() => {
 //     setIsInitialLoad(true);

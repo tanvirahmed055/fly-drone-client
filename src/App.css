@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+
+.loader {
+  height: 100svh;
+  width: 100vw;
+  background-color: #333;
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader .progress-value {
+  font-size: 100px;
+  font-weight: 100;
+  color: hsl(228, 8%, 95%);
+  translate: none;
+  rotate: none;
+  scale: none;
+  transform: scale(1.5, 1.5);
+}
+
+.progress-bar {
+  height: 10px; /* Adjust the height of the progress bar */
+  background-color: #fff; /* Adjust the color of the progress bar */
+}

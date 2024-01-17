@@ -41,7 +41,7 @@ const Header = () => {
     >
       <Container>
         <Link to='/'>
-          <motion.div
+          {/* <motion.div
             initial={isInitialLoad ? { x: '-100vw' } : {}}
             animate={isInitialLoad ? { x: '0' } : {}}
             transition={{
@@ -49,16 +49,15 @@ const Header = () => {
               type: 'spring',
               stiffness: 101,
             }}
-          >
-            {' '}
-            <Navbar.Brand className='fs-3 fw-bolder fst-italic text-white'>
-              <i className='fas fa-plane-slash'></i>&nbsp;FlyXDrone
-            </Navbar.Brand>
-          </motion.div>
+          > */}{' '}
+          <Navbar.Brand className='fs-3 fw-bolder fst-italic text-white'>
+            <i className='fas fa-plane-slash'></i>&nbsp;FlyXDrone
+          </Navbar.Brand>
+          {/* </motion.div> */}
         </Link>
 
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-        <motion.div
+        {/* <motion.div
           initial={isInitialLoad ? { x: '100vw' } : {}}
           animate={isInitialLoad ? { x: '0' } : {}}
           transition={{
@@ -66,51 +65,51 @@ const Header = () => {
             type: 'spring',
             stiffness: 101,
           }}
-        >
-          <Navbar.Collapse id='responsive-navbar-nav'>
-            <Nav className='ms-auto'>
-              {userInfo?.displayName && (
-                <Nav.Link className='me-2 fw-bold text-white'>
-                  Signed in as: {userInfo?.displayName}
-                </Nav.Link>
-              )}
+        > */}
+        <Navbar.Collapse id='responsive-navbar-nav'>
+          <Nav className='ms-auto'>
+            {userInfo?.displayName && (
+              <Nav.Link className='me-2 fw-bold text-white'>
+                Signed in as: {userInfo?.displayName}
+              </Nav.Link>
+            )}
 
-              <HashLink
-                className='me-2 nav-link text-white'
-                style={{ fontWeight: 'bold' }}
-                to='/explore'
-              >
-                Store
-              </HashLink>
+            <HashLink
+              className='me-2 nav-link text-white'
+              style={{ fontWeight: 'bold' }}
+              to='/explore'
+            >
+              Store
+            </HashLink>
 
-              {userInfo?.email && (
-                <Link to='/dashboard'>
-                  <Button variant='primary' className='me-3 fw-bold'>
-                    Dashboard
-                  </Button>
-                </Link>
-              )}
+            {userInfo?.email && (
+              <Link to='/dashboard'>
+                <Button variant='primary' className='me-3 fw-bold'>
+                  Dashboard
+                </Button>
+              </Link>
+            )}
 
-              {userInfo?.email ? (
-                <Link to='/'>
-                  <Button
-                    variant='warning'
-                    className='me-3 mb-1'
-                    onClick={() => handleLogOut()}
-                  >
-                    Logout
-                  </Button>
-                </Link>
-              ) : (
-                <Link to='/login'>
-                  <Button variant='warning' className='me-3 '>
-                    Sign in
-                    <i className='fa fa-sign-in ps-2' aria-hidden='true'></i>
-                  </Button>
-                </Link>
-              )}
+            {userInfo?.email ? (
+              <Link to='/'>
+                <Button
+                  variant='warning'
+                  className='me-3 mb-1'
+                  onClick={() => handleLogOut()}
+                >
+                  Logout
+                </Button>
+              </Link>
+            ) : (
+              <Link to='/login'>
+                <Button variant='warning' className='me-3 '>
+                  Sign in
+                  <i className='fa fa-sign-in ps-2' aria-hidden='true'></i>
+                </Button>
+              </Link>
+            )}
 
-              {/* {userInfo?.email &&
+            {/* {userInfo?.email &&
             <Link to="/">
               <Button
                 variant="warning"
@@ -121,7 +120,7 @@ const Header = () => {
               </Button>
             </Link>} */}
 
-              {/* {
+            {/* {
             <Link to="/cart">
               <Button
                 variant="btn btn-light"
@@ -132,30 +131,30 @@ const Header = () => {
                 <span style={{position: 'absolute', bottom: '25px', color: 'white', right: '-5px'}}>5</span>
               </Button>
             </Link>} */}
-              <Link to='/checkout'>
+            <Link to='/checkout'>
+              <Button
+                variant='btn btn-light'
+                className='me-3 mb-1 rounded-circle '
+                style={{ position: 'relative' }}
+              >
+                <i class='fas fa-cart-arrow-down'></i>
                 <Button
-                  variant='btn btn-light'
-                  className='me-3 mb-1 rounded-circle '
-                  style={{ position: 'relative' }}
+                  variant='btn btn-danger'
+                  className=' rounded-circle btn-sm'
+                  style={{
+                    position: 'absolute',
+                    bottom: '25px',
+                    color: 'white',
+                    right: '-10px',
+                  }}
                 >
-                  <i class='fas fa-cart-arrow-down'></i>
-                  <Button
-                    variant='btn btn-danger'
-                    className=' rounded-circle btn-sm'
-                    style={{
-                      position: 'absolute',
-                      bottom: '25px',
-                      color: 'white',
-                      right: '-10px',
-                    }}
-                  >
-                    {getTotalQuantity() || 0}
-                  </Button>
+                  {getTotalQuantity() || 0}
                 </Button>
-              </Link>
-            </Nav>
-          </Navbar.Collapse>
-        </motion.div>
+              </Button>
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+        {/* </motion.div> */}
       </Container>
     </Navbar>
   );
